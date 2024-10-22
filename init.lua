@@ -1,39 +1,25 @@
--- NEOVIM SETTINGS 
+ -- NEOVIM SETTINGS 
+require "core.keymaps"  -- keymaps
+require "core.options"  -- options
 
--- Formatting settings
-vim.cmd("set expandtab")
-vim.cmd("set tabstop=2")
-vim.cmd("set softtabstop=2")
-vim.cmd("set shiftwidth=2")
 
--- Set row numbers
-vim.cmd("set number")
-vim.cmd("set relativenumber")
+-- Lazy package manager setup 
+local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+    local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
+    local out = vim.fn.system { 'git', 'clone', '--filter=blob:none', '--branch=stable', lazyrepo, lazypath }
+    if vim.v.shell_error ~= 0 then
+        error('Error cloning lazy.nvim:\n' .. out)
+    end
+end
+vim.opt.rtp:prepend(lazypath)
 
--- Key mappings
-vim.g.mapleader = " "   -- Map leader to space
 
--- lazy package manager
--- see: https://lazy.folke.io/installation
-require("config.lazy")
-
--- Packages setup
------------------
-
--- Catppucin color scheme setup
-require("catppuccin").setup()
-vim.cmd.colorscheme "catppuccin"
-
--- Telescope setup 
-local builtin = require("telescope.builtin")
-vim.keymap.set('n', '<C-p>', builtin.find_files, {})
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-
--- Treesitter setup
-local treesitter_configs = require("nvim-treesitter.configs")
-treesitter_configs.setup({
-  ensure_installed = { "javascript", "lua", "html", "css", "typescript", "markdown", "markdown_inline" },
-  sync_install = false,
-  highlight = { enable = true },
-  indent = { enable = true },  
+-- Lazy plugin setup
+require("lazy").setup({
+     require("plugins.colortheme"),
+     require("plugins.neotree"),
+     require("plugins.telescope"),
+     require("plugins.treesitter"),
+     require("plugins.bufferline"),
 })
