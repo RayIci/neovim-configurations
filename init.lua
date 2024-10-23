@@ -23,7 +23,7 @@ require("lazy").setup({
 	require("plugins.lualine"),
 	require("plugins.lsp"),
 	require("plugins.cmp-autocompletion"),
-	require("plugins.none-ls-autoformatter"),
+	require("plugins.none-ls"),
 	require("plugins.alpha"),
 	require("plugins.indent-blankline"),
 	require("plugins.misc"),
