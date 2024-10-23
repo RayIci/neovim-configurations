@@ -2,6 +2,11 @@ return {
     "nvim-telescope/telescope.nvim",
     tag = "0.1.8",
     dependencies = { "nvim-lua/plenary.nvim" },
+    opts = function(_, opts)
+        opts.transparent = true
+        opts.italic_comments = true
+        opts.borderless_telescope = false
+    end,
     config = function()
         local builtin = require("telescope.builtin")
         vim.keymap.set("n", "<leader><leader>", builtin.find_files, {})
@@ -22,6 +27,8 @@ return {
                         ["<C-k>"] = require("telescope.actions").move_selection_previous,
                         ["<C-j>"] = require("telescope.actions").move_selection_next,
                         ["<C-l>"] = require("telescope.actions").select_default,
+                        ["<C-leader>v"] = require("telescope.actions").select_vertical,
+                        ["<C-leader>h"] = require("telescope.actions").select_horizontal,
                     },
                 },
             },
