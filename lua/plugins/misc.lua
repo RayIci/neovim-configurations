@@ -46,12 +46,26 @@ return {
 		"mg979/vim-visual-multi",
 	},
 	{
+		-- Comment multiple lines
 		"numToStr/Comment.nvim",
 		opts = {
 			-- add any options here
 		},
 		config = function()
 			require("Comment").setup()
+		end,
+	},
+	{
+		"windwp/nvim-ts-autotag",
+		config = function()
+			require("nvim-ts-autotag").setup({
+				opts = {
+					-- Defaults
+					enable_close = true, -- Auto close tags
+					enable_rename = true, -- Auto rename pairs of tags
+					enable_close_on_slash = false, -- Auto close on trailing </
+				},
+			})
 		end,
 	},
 }
