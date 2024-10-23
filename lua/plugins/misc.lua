@@ -45,4 +45,13 @@ return {
 		-- Visual mutiline edit
 		"mg979/vim-visual-multi",
 	},
+	{
+		"numToStr/Comment.nvim",
+		opts = {
+			-- add any options here
+		},
+		config = function()
+			require("Comment").setup()
+		end,
+	},
 }
