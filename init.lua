@@ -15,18 +15,20 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Lazy plugin setup
 require("lazy").setup({
-	require("plugins.colortheme"),
-	require("plugins.neotree"),
-	require("plugins.telescope"),
-	require("plugins.treesitter"),
-	require("plugins.bufferline"),
-	require("plugins.lualine"),
-	require("plugins.lsp"),
-	require("plugins.cmp-autocompletion"),
-	require("plugins.none-ls"),
-	require("plugins.alpha"),
-	require("plugins.indent-blankline"),
-	require("plugins.misc"),
-	require("plugins.inc-rename"),
-	require("plugins.git-integration"),
+	require("plugins.lsp"), -- neovim language server protocol plugin
+	require("plugins.none-ls"), -- linting, formatting, etc... with lsp
+
+	require("plugins.colortheme"), -- neovim theme
+	require("plugins.neotree"), -- neovim file tree
+	require("plugins.telescope"), -- neovim file search and other
+	require("plugins.treesitter"), -- code highlight and other
+	require("plugins.bufferline"), -- buffered windows
+	require("plugins.lualine"), -- neovim status bar
+	require("plugins.cmp-autocompletion"), -- code completition
+	require("plugins.alpha"), -- neovim starting page
+	require("plugins.indent-blankline"), -- neovim indent lines
+	require("plugins.inc-rename"), -- rename project varaible
+	require("plugins.git-integration"), -- git integration
+	require("plugins.lsp-signature"), -- function signature
+	require("plugins.misc"), -- useful other plugins
 })

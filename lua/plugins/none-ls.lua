@@ -18,6 +18,7 @@ return {
 				"shfmt", -- Shell formatter
 				"checkmake", -- linter for Makefiles
 				"ruff", -- Python linter and formatter
+				"chasrpier", -- C# formatter
 			},
 
 			automatic_installation = true,
@@ -28,12 +29,10 @@ return {
 			formatting.prettier.with({ filetypes = { "html", "json", "yaml", "markdown", "typescript" } }),
 			formatting.stylua,
 			formatting.shfmt.with({ args = { "-i", "4" } }),
-			formatting.terraform_fmt,
-			-- require("none-ls.formatting.ruff"),
+			formatting.csharpier,
 
 			-- Diagnostics / Static Analysis
 			diagnostics.checkmake,
-			-- require("none-ls.diagnostics.ruff"),
 		}
 
 		local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
