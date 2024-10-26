@@ -37,7 +37,7 @@ return {
 
 		-- Useful status updates for LSP.
 		-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-		{ "j-hui/fidget.nvim",       opts = {} },
+		{ "j-hui/fidget.nvim", opts = {} },
 
 		-- Allows extra capabilities provided by nvim-cmp
 		"hrsh7th/cmp-nvim-lsp",
@@ -77,7 +77,7 @@ return {
 				map("<leader>ws", require("telescope.builtin").lsp_dynamic_workspace_symbols, "[W]orkspace [S]ymbols")
 
 				-- Function hover for infos
-				map("<C-h>", "<cmd>lua vim.lsp.buf.hover()<CR>", "[H]over")
+				map("<S-h>", "<cmd>lua vim.lsp.buf.hover()<CR>", "[H]over")
 
 				-- Rename the variable under your cursor.
 				-- Most Language Servers support renaming across files, etc.
