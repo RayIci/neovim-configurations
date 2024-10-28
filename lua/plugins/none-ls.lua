@@ -26,7 +26,30 @@ return {
 
 		local sources = {
 			-- Formatters
-			formatting.prettier.with({ filetypes = { "html", "json", "yaml", "markdown", "typescript" } }),
+			formatting.prettier.with({
+				extra_args = { "--plugin" },
+				filetypes = {
+					"javascript",
+					"javascriptreact",
+					"typescript",
+					"typescriptreact",
+					"vue",
+					"css",
+					"scss",
+					"less",
+					"html",
+					"json",
+					"jsonc",
+					"yaml",
+					"markdown",
+					"markdown.mdx",
+					"graphql",
+					"handlebars",
+					"svelte",
+					"astro",
+					"htmlangular",
+				},
+			}),
 			formatting.stylua,
 			formatting.shfmt.with({ args = { "-i", "4" } }),
 			formatting.csharpier,
@@ -37,6 +60,7 @@ return {
 
 		local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 		null_ls.setup({
+			debug = true,
 			sources = sources,
 			on_attach = function(client, bufnr)
 				if client.supports_method("textDocument/formatting") then
