@@ -12,3 +12,5 @@ You can also see the [GITHUB LINK](https://github.com/hendrikmi/neovim-kickstart
 Kickstart github link [HERE](https://github.com/nvim-lua/kickstart.nvim/blob/master/init.lua).
 
 Another youtube video [HERE](https://www.youtube.com/watch?v=G7-qUMKSH_Y).
+
+Another youtube video [HERE](https://www.youtube.com/watch?v=6pAG3BHurdM).
