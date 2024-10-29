@@ -14,21 +14,5 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- Lazy plugin setup
-require("lazy").setup({
-	require("plugins.lsp"),             -- neovim language server protocol plugin
-	require("plugins.none-ls"),         -- linting, formatting, etc... with lsp
-
-	require("plugins.colortheme"),      -- neovim theme
-	require("plugins.neotree"),         -- neovim file tree
-	require("plugins.telescope"),       -- neovim file search and other
-	require("plugins.treesitter"),      -- code highlight and other
-	require("plugins.bufferline"),      -- buffered windows
-	require("plugins.lualine"),         -- neovim status bar
-	require("plugins.cmp-autocompletion"), -- code completition
-	require("plugins.alpha"),           -- neovim starting page
-	require("plugins.indent-blankline"), -- neovim indent lines
-	require("plugins.inc-rename"),      -- rename project varaible
-	require("plugins.git-integration"), -- git integration
-	require("plugins.lsp-signature"),   -- function signature
-	require("plugins.misc"),            -- useful other plugins
-})
+-- .setup("plugins") is found because the plugins are in the ./lua/plugins folder
+require("lazy").setup("plugins")

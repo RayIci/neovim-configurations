@@ -85,10 +85,14 @@ return {
 					"*.php",
 					"*.heex",
 					"*.astro",
-				}, -- The file patterns to watch and sort.
+				},      -- The file patterns to watch and sort.
 				node_path = "node",
 				trim_spaces = true, -- If `true`, trim any extra spaces after sorting.
 			})
 		end,
+	},
+	{
+		"stevearc/dressing.nvim",
+		opts = {},
 	},
 }
