@@ -19,6 +19,7 @@ return {
 				"checkmake", -- linter for Makefiles
 				"ruff", -- Python linter and formatter
 				"chasrpier", -- C# formatter
+				"rustywind", -- tailwind classes organizer
 			},
 
 			automatic_installation = true,
@@ -53,6 +54,7 @@ return {
 			formatting.stylua,
 			formatting.shfmt.with({ args = { "-i", "4" } }),
 			formatting.csharpier,
+			formatting.rustywind,
 
 			-- Diagnostics / Static Analysis
 			diagnostics.checkmake,
