@@ -36,7 +36,6 @@ return {
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 
 		-- Useful status updates for LSP.
-		-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
 		{ "j-hui/fidget.nvim", opts = {} },
 
 		-- Allows extra capabilities provided by nvim-cmp
@@ -81,7 +80,7 @@ return {
 
 				-- Rename the variable under your cursor.
 				-- Most Language Servers support renaming across files, etc.
-				-- map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
+				map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
 
 				-- Execute a code action, usually your cursor needs to be on top of an error
 				-- or a suggestion from your LSP for this to activate.
@@ -205,6 +204,9 @@ return {
 			lua_ls = {
 				settings = {
 					Lua = {
+						diagnostic = {
+							globals = { "vim" },
+						},
 						completion = {
 							callSnippet = "Replace",
 						},
@@ -212,22 +214,12 @@ return {
 				},
 			},
 		}
-		-- Require the servers
-
-		-- Ensure the servers and tools above are installed
-		--  To check the current status of installed tools and/or manually install
-		--  other tools, you can run
-		--    :Mason
-		--
-		--  You can press `g?` for help in this menu.
 		require("mason").setup()
-
-		-- You can add other tools here that you want Mason to install
-		-- for you, so that they are available from within Neovim.
 		local ensure_installed = vim.tbl_keys(servers or {})
 		vim.list_extend(ensure_installed, {
-			"stylua", -- Used to format Lua code
+			"stylua",
 		})
+
 		require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
 		require("mason-lspconfig").setup({
