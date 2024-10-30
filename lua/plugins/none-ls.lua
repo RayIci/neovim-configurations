@@ -27,30 +27,7 @@ return {
 
 		local sources = {
 			-- Formatters
-			formatting.prettier.with({
-				extra_args = { "--plugin" },
-				filetypes = {
-					"javascript",
-					"javascriptreact",
-					"typescript",
-					"typescriptreact",
-					"vue",
-					"css",
-					"scss",
-					"less",
-					"html",
-					"json",
-					"jsonc",
-					"yaml",
-					"markdown",
-					"markdown.mdx",
-					"graphql",
-					"handlebars",
-					"svelte",
-					"astro",
-					"htmlangular",
-				},
-			}),
+			formatting.prettier,
 			formatting.stylua,
 			formatting.shfmt.with({ args = { "-i", "4" } }),
 			formatting.csharpier,
