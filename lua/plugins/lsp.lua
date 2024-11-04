@@ -157,6 +157,9 @@ return {
 			-- Typescript
 			ts_ls = {},
 
+			-- tailwind
+			tailwindcss = {},
+
 			-- C#
 			omnisharp = {
 				cmd = { "dotnet", vim.fn.stdpath("data") .. "/mason/packages/omnisharp/libexec/OmniSharp.dll" }, -- "/home/alex/.lsp-servers/omnisharp-linux-x64-net6.0/OmniSharp.dll" },
