@@ -18,7 +18,7 @@ return {
 				"shfmt", -- Shell formatter
 				"checkmake", -- linter for Makefiles
 				"ruff", -- Python linter and formatter
-				"chasrpier", -- C# formatter
+				"csharpier", -- C# formatter
 				"rustywind", -- tailwind classes organizer
 			},
 
