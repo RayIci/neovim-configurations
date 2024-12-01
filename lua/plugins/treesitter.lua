@@ -18,6 +18,7 @@ return {
 				"markdown",
 				"markdown_inline",
 				"lua",
+				"latex",
 			},
 			sync_install = false,
 			highlight = { enable = true },
