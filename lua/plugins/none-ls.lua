@@ -16,7 +16,6 @@ return {
 				"stylua", -- lua formatter
 				"eslint_d", -- ts/js linter
 				"shfmt", -- Shell formatter
-				"checkmake", -- linter for Makefiles
 				"ruff", -- Python linter and formatter
 				"csharpier", -- C# formatter
 				"rustywind", -- tailwind classes organizer
@@ -33,8 +32,7 @@ return {
 			formatting.csharpier,
 			formatting.rustywind,
 
-			-- Diagnostics / Static Analysis
-			diagnostics.checkmake,
+			-- Diagnostics / Static Analysis (use it as: diagnostics.<diag_name>)
 		}
 
 		local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
