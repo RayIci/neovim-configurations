@@ -36,7 +36,7 @@ return {
 		"WhoIsSethDaniel/mason-tool-installer.nvim",
 
 		-- Useful status updates for LSP.
-		{ "j-hui/fidget.nvim", opts = {} },
+		{ "j-hui/fidget.nvim",       opts = {} },
 
 		-- Allows extra capabilities provided by nvim-cmp
 		"hrsh7th/cmp-nvim-lsp",
@@ -152,7 +152,6 @@ return {
 
 			-- Python
 			pyright = {},
-			ruff = {},
 
 			-- Typescript
 			ts_ls = {},
@@ -168,7 +167,7 @@ return {
 
 			-- C#
 			omnisharp = {
-				cmd = { "dotnet", vim.fn.stdpath("data") .. "/mason/packages/omnisharp/libexec/OmniSharp.dll" }, -- "/home/alex/.lsp-servers/omnisharp-linux-x64-net6.0/OmniSharp.dll" },
+				cmd = { "dotnet", vim.fn.stdpath("data") .. "/mason/packages/omnisharp/libexec/OmniSharp.dll" },
 				settings = {
 					FormattingOptions = {
 						-- Enables support for reading code style, naming convention and analyzer

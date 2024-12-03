@@ -16,7 +16,7 @@ return {
 				"stylua", -- lua formatter
 				"eslint_d", -- ts/js linter
 				"shfmt", -- Shell formatter
-				"ruff", -- Python linter and formatter
+				"black", -- Python formatter
 				"csharpier", -- C# formatter
 				"rustywind", -- tailwind classes organizer
 			},
@@ -31,8 +31,10 @@ return {
 			formatting.shfmt.with({ args = { "-i", "4" } }),
 			formatting.csharpier,
 			formatting.rustywind,
+			formatting.black,
 
 			-- Diagnostics / Static Analysis (use it as: diagnostics.<diag_name>)
+			-- diagnostics.mypy,
 		}
 
 		local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
