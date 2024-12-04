@@ -1,6 +1,21 @@
 -- Standalone plugins with less than 10 lines of config go here
 return {
 	{
+		-- Json parser
+		"Joakker/lua-json5",
+		build = function()
+			local uname = vim.loop.os_uname().sysname
+			print("sysname: ", uname)
+			if uname == "Windows_NT" then
+				print("Window: ", uname)
+				vim.cmd("!powershell ./install.ps1")
+			else
+				print("other: linux: ", uname)
+				vim.cmd("!sh ./install.sh")
+			end
+		end,
+	},
+	{
 		-- Tmux & split window navigation
 		"christoomey/vim-tmux-navigator",
 	},

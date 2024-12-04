@@ -6,9 +6,25 @@ return {
 	dependencies = {
 		"rcarriga/nvim-dap-ui",
 		"nvim-neotest/nvim-nio",
+		"jay-babu/mason-nvim-dap.nvim",
 	},
 	config = function()
 		local dap = require("dap")
+
+		-- Mason packages
+		local ensure_installed = {
+			"python",
+		}
+
+		-- Adapters & Configurations
+		local adapters = dap.adapters
+		local configs = dap.configurations
+
+		adapters.python = {
+			type = "executable",
+			command = "python",
+			args = { "-m", "debugpy.adapter" },
+		}
 
 		-- Keymaps
 		local kmap = vim.keymap
@@ -34,6 +50,22 @@ return {
 		end
 		dapui.setup({})
 
+		vim.fn.sign_define("DapBreakpoint", { text = "🛑", texthl = "", linehl = "", numhl = "" })
+
 		-- Setup the daps here
+
+		-- Mason download packages
+		require("mason").setup()
+		require("mason-nvim-dap").setup({
+			ensure_installed = ensure_installed,
+			automatic_installation = true,
+		})
+
+		-- Set the json decode function for deconding .launch.json files (vscode style debugging settings)
+		local dap_vscode = require("dap.ext.vscode")
+		dap_vscode.json_decode = vim.fn.json_decode
+
+		local launch_settings_path = ".vscode/launch.json"
+		dap_vscode.load_launchjs(launch_settings_path, nil)
 	end,
 }
