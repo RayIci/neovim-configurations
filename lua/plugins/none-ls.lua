@@ -34,7 +34,6 @@ return {
 			formatting.black,
 
 			-- Diagnostics / Static Analysis (use it as: diagnostics.<diag_name>)
-			-- diagnostics.mypy,
 		}
 
 		local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
