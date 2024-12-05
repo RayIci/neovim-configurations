@@ -4,15 +4,16 @@ return {
 	priority = 1000,
 	lazy = false,
 	config = function()
+		-- Keymap that for transparency toggle
 		vim.keymap.set("n", "<leader>tt", function()
 			local cat = require("catppuccin")
 			cat.options.transparent_background = not cat.options.transparent_background
 			cat.compile()
 			vim.cmd.colorscheme(vim.g.colors_name)
-		end, { desc = "Cattpuccin transparent background toggle" })
+		end, { desc = "[T]heme Transparency [T]oggle" })
 
 		require("catppuccin").setup({
-			flavour = "macchiato", -- latte, frappe, macchiato, mocha
+			flavour = "frappe", -- latte, frappe, macchiato, mocha
 			transparent_background = true, -- disables setting the background color.
 			show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
 			term_colors = false, -- sets terminal colors (e.g. `g:terminal_color_0`)
@@ -42,7 +43,6 @@ return {
 					enabled = true,
 					indentscope_color = "",
 				},
-				-- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
 			},
 		})
 		vim.cmd.colorscheme("catppuccin")
