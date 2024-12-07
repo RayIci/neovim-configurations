@@ -7,6 +7,70 @@ return {
         "rcarriga/nvim-dap-ui",
         "nvim-neotest/nvim-nio",
         "theHamsta/nvim-dap-virtual-text",
+
+        -- Dap packages
+        "mfussenegger/nvim-dap-python",
+    },
+    config = function()
+        local dap = require("dap")
+
+        -- Check if you are using widndows or linux and return the right
+        -- python command. This is not required to search for the full
+        -- path (even if u are usign a venv) because if the venv is
+        -- active the python command is available and it uses the one
+        -- provided by the virtual environment
+        require("dap-python").setup(vim.loop.os_uname().sysname == "Windows_NT" and "python" or "python3")
+
+        -- Keymaps
+        local kmap = vim.keymap
+        kmap.set("n", "<F10>", dap.step_over, { desc = "Debugger: step over" })
+        kmap.set("n", "<F11>", dap.step_into, { desc = "Debubber: step into" })
+        kmap.set("n", "<F12>", dap.step_out, { desc = "Debugger: step out" })
+        kmap.set("n", "<Leader>dt", ":lua require('dapui').toggle()<CR>", { desc = "[D]ebugger: [T]oggle" })
+        kmap.set("n", "<Leader>db", dap.toggle_breakpoint, { desc = "[D]ebugger: Toggle [B]reakpoint" })
+        kmap.set("n", "<Leader>dr", function()
+            require("dapui").open({ reset = true })
+        end, { desc = "[D]ebugger: [R]eset UI" })
+        kmap.set("n", "<Leader>dc", function()
+            require("dap.ext.vscode").json_decode = vim.fn.json_decode
+            require("dap.ext.vscode").load_launchjs(".vscode/launch.json", nil)
+            dap.continue()
+        end, { desc = "[D]ebugger: [C]ontinue" })
+
+        -- Dap ui configurations
+        local dapui = require("dapui")
+
+        -- Open and close dapui automatically
+        dap.listeners.before.attach.dapui_config = function()
+            dapui.open()
+        end
+        dap.listeners.before.launch.dapui_config = function()
+            dapui.open()
+        end
+        dap.listeners.before.event_terminated.dapui_config = function()
+            dapui.close()
+        end
+        dap.listeners.before.event_exited.dapui_config = function()
+            dapui.close()
+        end
+        dapui.setup({})
+
+        -- Virtual text setup (enable variables value inspection on screen near code line)
+        require("nvim-dap-virtual-text").setup()
+
+        -- Dap breakpoint symbol on editor
+        vim.fn.sign_define("DapBreakpoint", { text = "🔴", texthl = "", linehl = "", numhl = "" })
+    end,
+}
+
+-- Old configurations
+-- TODO: Delete when feel confortable to do it and everything works fine
+--[[ return {
+    "mfussenegger/nvim-dap",
+    dependencies = {
+        "rcarriga/nvim-dap-ui",
+        "nvim-neotest/nvim-nio",
+        "theHamsta/nvim-dap-virtual-text",
         "williamboman/mason.nvim",
         "jay-babu/mason-nvim-dap.nvim",
     },
@@ -98,4 +162,4 @@ return {
             },
         })
     end,
-}
+} ]]
