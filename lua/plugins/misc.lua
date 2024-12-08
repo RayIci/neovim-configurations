@@ -77,6 +77,19 @@ return {
         event = "VeryLazy",
     },
     {
+        "rcarriga/nvim-notify",
+        config = function()
+            vim.opt.termguicolors = true
+            vim.notify = require("notify")
+            vim.keymap.set(
+                "n",
+                "<leader>nw",
+                ":Telescope notify<CR>",
+                { noremap = true, silent = true, desc = "[N]otify [W]indow" }
+            )
+        end,
+    },
+    {
         -- LaTex integration
         "lervag/vimtex",
         lazy = false,
