@@ -8,6 +8,9 @@ vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 -- For conciseness
 local opts = { noremap = true, silent = true }
 
+-- Terminal
+vim.keymap.set("n", "<leader>ot", ":terminal<CR>", vim.tbl_extend("force", opts, { desc = "[O]pen [T]erminal" }))
+
 -- Move lines up and down
 vim.keymap.set("n", "J", ":m .+1<CR>==", vim.tbl_extend("force", opts, { desc = "Move Line Up" }))
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", vim.tbl_extend("force", opts, { desc = "Move Line Up" }))
@@ -81,14 +84,14 @@ vim.keymap.set(
     "<leader>xa",
     ":bufdo :Bdelete<CR>",
     vim.tbl_extend("force", opts, { desc = "Buffer Delete [A]ll" })
-) -- close buffer
+)                                                                                                           -- close buffer
 vim.keymap.set("n", "<leader>b", "<cmd> enew <CR>", vim.tbl_extend("force", opts, { desc = "Buffer New" })) -- new buffer
 
 -- Window management
-vim.keymap.set("n", "<leader>v", "<C-w>v", vim.tbl_extend("force", opts, { desc = "Split Window [V]ertically" })) -- split window vertically
+vim.keymap.set("n", "<leader>v", "<C-w>v", vim.tbl_extend("force", opts, { desc = "Split Window [V]ertically" }))  -- split window vertically
 vim.keymap.set("n", "<leader>h", "<C-w>s", vim.tbl_extend("force", opts, { desc = "Split Window [H]rizontally" })) -- split window horizontally
 vim.keymap.set("n", "<leader>se", "<C-w>=", vim.tbl_extend("force", opts, { desc = "Make [S]plit [E]qual Size" })) -- make split windows equal width & height
-vim.keymap.set("n", "<leader>xs", ":close<CR>", vim.tbl_extend("force", opts, { desc = "Split Close" })) -- close current split window
+vim.keymap.set("n", "<leader>xs", ":close<CR>", vim.tbl_extend("force", opts, { desc = "Split Close" }))           -- close current split window
 
 -- Navigate between splits
 vim.keymap.set("n", "<C-k>", ":wincmd k<CR>", vim.tbl_extend("force", opts, { desc = "Split Navigate Up" }))
@@ -97,10 +100,10 @@ vim.keymap.set("n", "<C-h>", ":wincmd h<CR>", vim.tbl_extend("force", opts, { de
 vim.keymap.set("n", "<C-l>", ":wincmd l<CR>", vim.tbl_extend("force", opts, { desc = "Split Navigate Right" }))
 
 -- Tabs
-vim.keymap.set("n", "<leader>to", ":tabnew<CR>", vim.tbl_extend("force", opts, { desc = "[T]ab [O]pen New" })) -- open new tab
-vim.keymap.set("n", "<leader>xt", ":tabclose<CR>", vim.tbl_extend("force", opts, { desc = "[T]ab Close" })) -- close current tab
-vim.keymap.set("n", "<leader>tn", ":tabn<CR>", vim.tbl_extend("force", opts, { desc = "[T]ab [N]ext" })) --  go to next tab
-vim.keymap.set("n", "<leader>tp", ":tabp<CR>", vim.tbl_extend("force", opts, { desc = "[T]ab [P]revious" })) --  go to previous tab
+vim.keymap.set("n", "<leader>to", ":tabnew<CR>", vim.tbl_extend("force", opts, { desc = "[T]ab [O]pen New" }))  -- open new tab
+vim.keymap.set("n", "<leader>xt", ":tabclose<CR>", vim.tbl_extend("force", opts, { desc = "[T]ab Close" }))     -- close current tab
+vim.keymap.set("n", "<leader>tn", ":tabn<CR>", vim.tbl_extend("force", opts, { desc = "[T]ab [N]ext" }))        --  go to next tab
+vim.keymap.set("n", "<leader>tp", ":tabp<CR>", vim.tbl_extend("force", opts, { desc = "[T]ab [P]revious" }))    --  go to previous tab
 vim.keymap.set("n", "<leader>tss", ":tab split<CR>", vim.tbl_extend("force", opts, { desc = "[T]ab [S]plit" })) -- split tab
 
 -- Toggle line wrapping

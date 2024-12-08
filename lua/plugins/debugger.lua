@@ -5,11 +5,17 @@ return {
     "mfussenegger/nvim-dap",
     dependencies = {
         "rcarriga/nvim-dap-ui",
-        "nvim-neotest/nvim-nio",
         "theHamsta/nvim-dap-virtual-text",
+
+        -- Test plugins
+        "nvim-neotest/neotest",
+        "nvim-neotest/nvim-nio",
+        "nvim-neotest/neotest-plenary", -- Adapter per test generici
+        "nvim-neotest/neotest-vim-test",
 
         -- Dap packages
         "mfussenegger/nvim-dap-python",
+        "nvim-neotest/neotest-python",
     },
     config = function()
         local dap = require("dap")
@@ -21,7 +27,7 @@ return {
         -- provided by the virtual environment
         require("dap-python").setup(vim.loop.os_uname().sysname == "Windows_NT" and "python" or "python3")
 
-        -- Keymaps
+        -- Debug Keymaps
         local kmap = vim.keymap
         kmap.set("n", "<F10>", dap.step_over, { desc = "Debugger: step over" })
         kmap.set("n", "<F11>", dap.step_into, { desc = "Debubber: step into" })
@@ -53,13 +59,42 @@ return {
         dap.listeners.before.event_exited.dapui_config = function()
             dapui.close()
         end
-        dapui.setup({})
+        dapui.setup()
 
         -- Virtual text setup (enable variables value inspection on screen near code line)
         require("nvim-dap-virtual-text").setup()
 
         -- Dap breakpoint symbol on editor
-        vim.fn.sign_define("DapBreakpoint", { text = "🔴", texthl = "", linehl = "", numhl = "" })
+        -- vim.fn.sign_define("DapBreakpoint", { text = "🔴", texthl = "", linehl = "", numhl = "" })
+
+        -- Test configurations
+        require("neotest").setup({
+            adapters = {
+                require("neotest-python")({
+                    dap = { justMyCode = false },
+                }),
+                require("neotest-plenary"),
+                require("neotest-vim-test")({
+                    ignore_file_types = { "python", "vim", "lua" },
+                }),
+            },
+        })
+
+        kmap.set("n", "<leader>tr", function()
+            require("neotest").run.run()
+        end, { desc = "Esegui test sotto il cursore" })
+        kmap.set("n", "<leader>tf", function()
+            require("neotest").run.run(vim.fn.expand("%"))
+        end, { desc = "Esegui tutti i test nel file corrente" })
+        kmap.set("n", "<leader>ta", function()
+            require("neotest").run.run({ suite = true })
+        end, { desc = "Esegui tutti i test" })
+        kmap.set("n", "<leader>to", function()
+            require("neotest").output.open({ enter = true })
+        end, { desc = "Apri output del test" })
+        kmap.set("n", "<leader>ts", function()
+            require("neotest").summary.toggle()
+        end, { desc = "Toggle summary dei test" })
     end,
 }
 

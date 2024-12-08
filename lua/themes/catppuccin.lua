@@ -43,6 +43,17 @@ return {
                     enabled = true,
                     indentscope_color = "",
                 },
+                dap = {
+                    enabled = true,
+                    enable_ui = true,
+                },
+                neotest = {
+                    enabled = true,
+                    styles = {
+                        passed = "bold",
+                        failed = "italic",
+                    },
+                },
             },
         })
         vim.cmd.colorscheme("catppuccin")
