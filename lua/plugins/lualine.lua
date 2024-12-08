@@ -24,7 +24,26 @@ return {
             sections = {
                 lualine_a = { "mode" },
                 lualine_b = { "branch", "diff", "diagnostics" },
-                lualine_c = { "filename" },
+                lualine_c = {
+                    "filename",
+                    {
+                        "tabs",
+                        separator = "|",
+                        color = { fg = "#ffffff", bg = "#ff0000" },
+                        padding = { left = 1, right = 1 },
+                        fmt = function()
+                            local current_tab = vim.fn.tabpagenr()
+                            local tab_list = vim.fn.tabpagebuflist()
+                            local tab_names = {}
+                            for _, buf in ipairs(tab_list) do
+                                local name = vim.fn.bufname(buf)
+                                table.insert(tab_names, name)
+                            end
+                            return "Tab " ..
+                            current_tab .. ": " .. table.concat(tab_names, ", ")                  -- Mostra il nome delle tab
+                        end,
+                    },
+                },
                 lualine_x = { "encoding", "fileformat", "filetype" },
                 lualine_y = { "progress" },
                 lualine_z = { "location" },
