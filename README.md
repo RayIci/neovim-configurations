@@ -32,6 +32,11 @@ Install libfuse2:
 sudo apt install libfuse2
 ```
 
+Install `fd` see [github page](https://github.com/sharkdp/fd):
+```bash
+sudo apt install fd-find
+```
+
 Install `luarocks`:
 
 ```bash
