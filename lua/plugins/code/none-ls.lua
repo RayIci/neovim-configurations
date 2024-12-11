@@ -41,6 +41,11 @@ return {
             },
         })
 
+        vim.cmd.highlight("DiagnosticUnderlineError guisp=#ff0000 gui=undercurl")
+        vim.cmd.highlight("DiagnosticUnderlineWarn guisp=#FFA500 gui=undercurl")
+        vim.cmd.highlight("DiagnosticUnderlineInfo guisp=#00FFFF gui=undercurl")
+        vim.cmd.highlight("DiagnosticUnderlineHint guisp=#00FF00 gui=undercurl")
+
         local null_ls = require("null-ls")
         local formatting = null_ls.builtins.formatting   -- to setup formatters
         local diagnostics = null_ls.builtins.diagnostics -- to setup linters
