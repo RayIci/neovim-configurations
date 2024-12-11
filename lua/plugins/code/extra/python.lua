@@ -17,8 +17,8 @@ return {
         branch = "regexp",
         event = "VeryLazy",
         keys = {
-            { ",vs", "<cmd>VenvSelect<cr>" },
-            { ",vc", "<cmd>VenvSelectCached<cr>" },
+            { "-vs", "<cmd>VenvSelect<cr>" },
+            { "-vc", "<cmd>VenvSelectCached<cr>" },
         },
     },
 }
