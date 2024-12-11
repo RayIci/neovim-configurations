@@ -8,6 +8,7 @@ return {
         "theHamsta/nvim-dap-virtual-text",
 
         -- Test plugins
+        -- TODO: refacotor to unit-test.lua
         "nvim-neotest/neotest",
         "nvim-neotest/nvim-nio",
         "nvim-neotest/neotest-plenary", -- Adapter per test generici
