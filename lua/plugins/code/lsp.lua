@@ -48,11 +48,21 @@ local servers = {
     lua_ls = {
         settings = {
             Lua = {
-                diagnostic = {
+                runtime = {
+                    -- Dichiara la versione Lua usata da Neovim
+                    version = "LuaJIT",
+                },
+                diagnostics = {
+                    -- Riconosci 'vim' come variabile globale
                     globals = { "vim" },
                 },
-                completion = {
-                    callSnippet = "Replace",
+                workspace = {
+                    -- Rendi visibili i file runtime di Neovim
+                    library = vim.api.nvim_get_runtime_file("", true),
+                    checkThirdParty = false,
+                },
+                telemetry = {
+                    enable = false, -- Disabilita la telemetria
                 },
             },
         },
@@ -94,7 +104,6 @@ return {
         "WhoIsSethDaniel/mason-tool-installer.nvim",
         "j-hui/fidget.nvim",
         "hrsh7th/cmp-nvim-lsp",
-        "ray-x/lsp_signature.nvim",
     },
     config = function()
         vim.api.nvim_create_autocmd("LspAttach", {
