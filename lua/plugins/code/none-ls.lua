@@ -30,6 +30,17 @@ return {
         "jayp0521/mason-null-ls.nvim", -- ensure dependencies are installed
     },
     config = function()
+        vim.diagnostic.config({
+            virtual_text = false,    -- Disable virtual text (error shown in the editor)
+            signs = true,            -- Show error, warning, etc... signs
+            underline = true,        -- Show the line under an error, warning, etc ...
+            update_in_insert = true, -- Update the errors, warnings also on insert
+            float = {
+                source = "always",
+                border = "rounded",
+            },
+        })
+
         local null_ls = require("null-ls")
         local formatting = null_ls.builtins.formatting   -- to setup formatters
         local diagnostics = null_ls.builtins.diagnostics -- to setup linters
