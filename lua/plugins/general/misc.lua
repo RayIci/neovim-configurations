@@ -40,9 +40,7 @@ return {
     {
         -- High-performance color highlighter
         "norcalli/nvim-colorizer.lua",
-        config = function()
-            require("colorizer").setup()
-        end,
+        config = true,
     },
     {
         -- Visual mutiline edit
@@ -51,12 +49,7 @@ return {
     {
         -- Comment multiple lines
         "numToStr/Comment.nvim",
-        opts = {
-            -- add any options here
-        },
-        config = function()
-            require("Comment").setup()
-        end,
+        config = true,
     },
     {
         -- Tag autoclose
@@ -77,36 +70,11 @@ return {
         event = "VeryLazy",
     },
     {
-        "rcarriga/nvim-notify",
-        config = function()
-            vim.opt.termguicolors = true
-            vim.notify = require("notify")
-            vim.keymap.set(
-                "n",
-                "<leader>nw",
-                ":Telescope notify<CR>",
-                { noremap = true, silent = true, desc = "[N]otify [W]indow" }
-            )
-        end,
-    },
-    {
-        -- LaTex integration
-        "lervag/vimtex",
-        lazy = false,
-        init = function()
-            vim.g.vimtex_view_method = "mupdf"
-        end,
-    },
-    {
         -- Sorround
         "kylechui/nvim-surround",
-        version = "*", -- Use for stability; omit to use `main` branch for the latest features
+        version = "*",
         event = "VeryLazy",
-        config = function()
-            require("nvim-surround").setup({
-                -- Configuration here, or leave empty to use defaults
-            })
-        end,
+        config = true,
     },
     {
         -- Better file symbol symbols
@@ -119,30 +87,6 @@ return {
                 "<cmd>SymbolsOutline<CR>",
                 { noremap = true, silent = true, desc = "[S]ymbols [O]utline" }
             )
-        end,
-    },
-    {
-        "s1n7ax/nvim-window-picker",
-        name = "window-picker",
-        event = "VeryLazy",
-        version = "2.*",
-        config = function()
-            require("window-picker").setup()
-        end,
-    },
-    {
-        -- Lua Json parser
-        "Joakker/lua-json5",
-        build = function()
-            local uname = vim.loop.os_uname().sysname
-            print("Downloading json lua parser for os: ", uname)
-            if uname == "Windows_NT" then
-                print("Dowloading for Window")
-                vim.cmd("!powershell ./install.ps1")
-            else
-                print("Downloading for linux")
-                vim.cmd("!sh ./install.sh")
-            end
         end,
     },
 }

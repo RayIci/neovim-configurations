@@ -1,3 +1,28 @@
+local ensure_installed = {
+    "prettier",  -- ts/js formatter
+    "stylua",    -- lua formatter
+    "eslint_d",  -- ts/js linter
+    "shfmt",     -- Shell formatter
+    "black",     -- Python formatter
+    "csharpier", -- C# formatter
+    "rustywind", -- tailwind classes organizer
+}
+
+local diagnostics_config = function(diagnostics)
+    return {}
+end
+
+local formatting_config = function(formatting)
+    return {
+        formatting.prettier,
+        formatting.stylua,
+        formatting.shfmt.with({ args = { "-i", "4" } }),
+        formatting.csharpier,
+        formatting.rustywind,
+        formatting.black,
+    }
+end
+
 return {
     "nvimtools/none-ls.nvim",
     dependencies = {
@@ -6,35 +31,16 @@ return {
     },
     config = function()
         local null_ls = require("null-ls")
-        local formatting = null_ls.builtins.formatting -- to setup formatters
+        local formatting = null_ls.builtins.formatting   -- to setup formatters
         local diagnostics = null_ls.builtins.diagnostics -- to setup linters
 
         -- Formatters & linters for mason to install
         require("mason-null-ls").setup({
-            ensure_installed = {
-                "prettier", -- ts/js formatter
-                "stylua", -- lua formatter
-                "eslint_d", -- ts/js linter
-                "shfmt", -- Shell formatter
-                "black", -- Python formatter
-                "csharpier", -- C# formatter
-                "rustywind", -- tailwind classes organizer
-            },
-
+            ensure_installed = ensure_installed,
             automatic_installation = true,
         })
 
-        local sources = {
-            -- Formatters
-            formatting.prettier,
-            formatting.stylua,
-            formatting.shfmt.with({ args = { "-i", "4" } }),
-            formatting.csharpier,
-            formatting.rustywind,
-            formatting.black,
-
-            -- Diagnostics / Static Analysis (use it as: diagnostics.<diag_name>)
-        }
+        local sources = vim.tbl_deep_extend("force", diagnostics_config(diagnostics), formatting_config(formatting))
 
         local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
         null_ls.setup({

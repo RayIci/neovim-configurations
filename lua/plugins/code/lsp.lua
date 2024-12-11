@@ -1,5 +1,65 @@
--- Disable "No information available" notification on hover
--- plus define border for hover window
+--  Add any additional override configuration in the following tables. Available keys are:
+--  - cmd (table): Override the default command used to start the server
+--  - filetypes (table): Override the default list of associated filetypes for the server
+--  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
+--  - settings (table): Override the default settings passed when initializing the server.
+-- For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
+local servers = {
+    -- LSP Server configurations
+
+    -- Python
+    pyright = {},
+
+    -- Typescript
+    ts_ls = {},
+
+    -- tailwind
+    tailwindcss = {},
+
+    -- LaTex
+    -- this also format and lint the latex code.
+    -- NOTE: if the formatting is not working check run `latexindent` in your terminal
+    -- and see the errore given by latexindent
+    texlab = {},
+
+    -- C#
+    omnisharp = {
+        cmd = { "dotnet", vim.fn.stdpath("data") .. "/mason/packages/omnisharp/libexec/OmniSharp.dll" },
+        settings = {
+            FormattingOptions = {
+                EnableEditorConfigSupport = true,
+                OrganizeImports = true,
+            },
+            MsBuild = {
+                LoadProjectsOnDemand = nil,
+            },
+            RoslynExtensionsOptions = {
+                EnableAnalyzersSupport = nil,
+                EnableImportCompletion = true,
+                AnalyzeOpenDocumentsOnly = nil,
+            },
+            Sdk = {
+                IncludePrereleases = true,
+            },
+        },
+    },
+
+    -- lua
+    lua_ls = {
+        settings = {
+            Lua = {
+                diagnostic = {
+                    globals = { "vim" },
+                },
+                completion = {
+                    callSnippet = "Replace",
+                },
+            },
+        },
+    },
+}
+
+-- Set bordered text hover for lsp handler
 vim.lsp.handlers["textDocument/hover"] = function(_, result, ctx, config)
     config = config
         or {
@@ -32,8 +92,9 @@ return {
         { "williamboman/mason.nvim", config = true },
         "williamboman/mason-lspconfig.nvim",
         "WhoIsSethDaniel/mason-tool-installer.nvim",
-        { "j-hui/fidget.nvim",       opts = {} },
+        "j-hui/fidget.nvim",
         "hrsh7th/cmp-nvim-lsp",
+        "ray-x/lsp_signature.nvim",
     },
     config = function()
         vim.api.nvim_create_autocmd("LspAttach", {
@@ -84,11 +145,8 @@ return {
                 --  For example, in C this would take you to the header.
                 map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 
-                -- The following two autocommands are used to highlight references of the
-                -- word under your cursor when your cursor rests there for a little while.
+                -- When you move your cursor highlight references of the word under your cursor (the second autocommand).
                 --    See `:help CursorHold` for information about when this is executed
-                --
-                -- When you move your cursor, the highlights will be cleared (the second autocommand).
                 local client = vim.lsp.get_client_by_id(event.data.client_id)
                 if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
                     local highlight_augroup = vim.api.nvim_create_augroup("kickstart-lsp-highlight", { clear = false })
@@ -121,9 +179,9 @@ return {
                 --
                 -- This may be unwanted, since they displace some of your code
                 if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
-                    map("<leader>th", function()
+                    map("<leader>tih", function()
                         vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = event.buf }))
-                    end, "[T]oggle Inlay [H]ints")
+                    end, "[T]oggle [I]nlay [H]ints")
                 end
             end,
         })
@@ -134,70 +192,6 @@ return {
         --  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
         local capabilities = vim.lsp.protocol.make_client_capabilities()
         capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
-
-        -- Enable the following language servers
-        --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
-        --
-        --  Add any additional override configuration in the following tables. Available keys are:
-        --  - cmd (table): Override the default command used to start the server
-        --  - filetypes (table): Override the default list of associated filetypes for the server
-        --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
-        --  - settings (table): Override the default settings passed when initializing the server.
-        --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
-        local servers = {
-            -- LSP Server configurations
-
-            -- Python
-            pyright = {},
-
-            -- Typescript
-            ts_ls = {},
-
-            -- tailwind
-            tailwindcss = {},
-
-            -- LaTex
-            -- this also format and lint the latex code.
-            -- NOTE: if the formatting is not working check run `latexindent` in your terminal
-            -- and see the errore given by latexindent
-            texlab = {},
-
-            -- C#
-            omnisharp = {
-                cmd = { "dotnet", vim.fn.stdpath("data") .. "/mason/packages/omnisharp/libexec/OmniSharp.dll" },
-                settings = {
-                    FormattingOptions = {
-                        EnableEditorConfigSupport = true,
-                        OrganizeImports = true,
-                    },
-                    MsBuild = {
-                        LoadProjectsOnDemand = nil,
-                    },
-                    RoslynExtensionsOptions = {
-                        EnableAnalyzersSupport = nil,
-                        EnableImportCompletion = true,
-                        AnalyzeOpenDocumentsOnly = nil,
-                    },
-                    Sdk = {
-                        IncludePrereleases = true,
-                    },
-                },
-            },
-
-            -- lua
-            lua_ls = {
-                settings = {
-                    Lua = {
-                        diagnostic = {
-                            globals = { "vim" },
-                        },
-                        completion = {
-                            callSnippet = "Replace",
-                        },
-                    },
-                },
-            },
-        }
 
         require("mason").setup()
         require("mason-tool-installer").setup({ ensure_installed = vim.tbl_keys(servers or {}) })
