@@ -1,22 +1,16 @@
 -- For debug adapter installation see:
 -- https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation
 
+local map = require("utils").mapkey
+
 return {
     "mfussenegger/nvim-dap",
     dependencies = {
         "rcarriga/nvim-dap-ui",
         "theHamsta/nvim-dap-virtual-text",
 
-        -- Test plugins
-        -- TODO: refacotor to unit-test.lua
-        "nvim-neotest/neotest",
-        "nvim-neotest/nvim-nio",
-        "nvim-neotest/neotest-plenary", -- Adapter per test generici
-        "nvim-neotest/neotest-vim-test",
-
-        -- Dap packages
+        -- Dap language specific packages
         "mfussenegger/nvim-dap-python",
-        "nvim-neotest/neotest-python",
     },
     config = function()
         local dap = require("dap")
@@ -29,16 +23,16 @@ return {
         require("dap-python").setup(vim.loop.os_uname().sysname == "Windows_NT" and "python" or "python3")
 
         -- Debug Keymaps
-        local kmap = vim.keymap
-        kmap.set("n", "<F10>", dap.step_over, { desc = "Debugger: step over" })
-        kmap.set("n", "<F11>", dap.step_into, { desc = "Debubber: step into" })
-        kmap.set("n", "<F12>", dap.step_out, { desc = "Debugger: step out" })
-        kmap.set("n", "<Leader>dt", ":lua require('dapui').toggle()<CR>", { desc = "[D]ebugger: [T]oggle" })
-        kmap.set("n", "<Leader>db", dap.toggle_breakpoint, { desc = "[D]ebugger: Toggle [B]reakpoint" })
-        kmap.set("n", "<Leader>dr", function()
+        map("n", "1", dap.step_into, { desc = "Debubber: step into" })
+        map("n", "2", dap.step_over, { desc = "Debugger: step over" })
+        map("n", "3", dap.step_out, { desc = "Debugger: step out" })
+        map("n", "5", dap.continue, { desc = "[D]ebugger: [C]ontinue" })
+        map("n", "<Leader>dt", ":lua require('dapui').toggle()<CR>", { desc = "[D]ebugger: [T]oggle" })
+        map("n", "<Leader>db", dap.toggle_breakpoint, { desc = "[D]ebugger: Toggle [B]reakpoint" })
+        map("n", "<Leader>dr", function()
             require("dapui").open({ reset = true })
         end, { desc = "[D]ebugger: [R]eset UI" })
-        kmap.set("n", "<Leader>dc", function()
+        map("n", "<Leader>dc", function()
             require("dap.ext.vscode").json_decode = vim.fn.json_decode
             require("dap.ext.vscode").load_launchjs(".vscode/launch.json", nil)
             dap.continue()
@@ -65,37 +59,8 @@ return {
         -- Virtual text setup (enable variables value inspection on screen near code line)
         require("nvim-dap-virtual-text").setup()
 
-        -- Dap breakpoint symbol on editor
+        -- Dap breakpoint symbol on editor ➡  ⚫  ⚪  ⭕ 🔴   More: https://apps.timwhitlock.info/emoji/tables/unicode
         -- vim.fn.sign_define("DapBreakpoint", { text = "🔴", texthl = "", linehl = "", numhl = "" })
-
-        -- Test configurations
-        require("neotest").setup({
-            adapters = {
-                require("neotest-python")({
-                    dap = { justMyCode = false },
-                }),
-                require("neotest-plenary"),
-                require("neotest-vim-test")({
-                    ignore_file_types = { "python", "vim", "lua" },
-                }),
-            },
-        })
-
-        kmap.set("n", "<leader>tr", function()
-            require("neotest").run.run()
-        end, { desc = "Esegui test sotto il cursore" })
-        kmap.set("n", "<leader>tf", function()
-            require("neotest").run.run(vim.fn.expand("%"))
-        end, { desc = "Esegui tutti i test nel file corrente" })
-        kmap.set("n", "<leader>ta", function()
-            require("neotest").run.run({ suite = true })
-        end, { desc = "Esegui tutti i test" })
-        kmap.set("n", "<leader>to", function()
-            require("neotest").output.open({ enter = true })
-        end, { desc = "Apri output del test" })
-        kmap.set("n", "<leader>ts", function()
-            require("neotest").summary.toggle()
-        end, { desc = "Toggle summary dei test" })
     end,
 }
 
