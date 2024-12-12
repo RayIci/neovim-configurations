@@ -10,4 +10,7 @@ return {
 
     -- Ui related plugins
     require("plugins.ui.entry"),
+
+    -- Ai related plugins
+    require("plugins.ai.entry"),
 }
