@@ -1,3 +1,5 @@
+local map = require("utils").mapkey
+
 return {
     {
         -- Virtual environment selector
@@ -13,12 +15,11 @@ return {
                 auto_refresh = true,
                 search = true,
             })
+
+            map("n", "-pvs", "<cmd>VenvSelect<cr>", { desc = "Python: [V]env [S]elect" })
+            map("n", "-pvc", "<cmd>VenvSelectCached<cr>", { desc = "Python: [V]env Select [C]ached" })
         end,
         branch = "regexp",
         event = "VeryLazy",
-        keys = {
-            { "-vs", "<cmd>VenvSelect<cr>" },
-            { "-vc", "<cmd>VenvSelectCached<cr>" },
-        },
     },
 }
