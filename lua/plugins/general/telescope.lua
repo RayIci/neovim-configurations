@@ -34,12 +34,12 @@ return {
             },
             pickers = {
                 find_files = {
-                    file_ignore_patterns = { "node_modules", ".git", ".venv" },
+                    file_ignore_patterns = { "node_modules", ".git", ".venv", "__pycanche__" },
                     hidden = true,
                 },
             },
             live_grep = {
-                file_ingore_patterns = { "node_modules", ".git", ".venv" },
+                file_ingore_patterns = { "node_modules", ".git", ".venv", "__pycanche__" },
                 additional_args = function(_)
                     return { "--hidden" }
                 end,
