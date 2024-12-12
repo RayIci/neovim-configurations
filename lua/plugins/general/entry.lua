@@ -1,6 +1,7 @@
 return {
     require("plugins.general.bufferline"),
     require("plugins.general.indent-blankline"),
+    require("plugins.general.doge"),
     require("plugins.general.json-parser"),
     require("plugins.general.neotree"),
     require("plugins.general.noice"),
