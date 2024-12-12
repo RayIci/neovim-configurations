@@ -34,10 +34,10 @@ map("n", "n", "nzzzv", { desc = "Find Next" })
 map("n", "N", "Nzzzv", { desc = "Find Previous" })
 
 -- Resize with arrows
-map("n", "<Up>", ":resize -2<CR>", { desc = "Resize Horizontal (-)" })
-map("n", "<Down>", ":resize +2<CR>", { desc = "Resize Horizontal (+)" })
-map("n", "<Left>", ":vertical resize -2<CR>", { desc = "Resize Vertical (+)" })
-map("n", "<Right>", ":vertical resize +2<CR>", { desc = "Resize Vertinal (-)" })
+map("n", "<Up>", [[<cmd>horizontal resize +5<cr>]], { desc = "Resize Horizontal (-)" })
+map("n", "<Down>", [[<cmd>horizontal resize -5<cr>]], { desc = "Resize Horizontal (+)" })
+map("n", "<Left>", [[<cmd>vertical resize +2<cr>]], { desc = "Resize Vertical (+)" })
+map("n", "<Right>", [[<cmd>vertical resize -2<cr>]], { desc = "Resize Vertinal (-)" })
 
 -- Buffers
 map("n", "<C-Left>", ":BufferLineMovePrev<CR>", { desc = "Buffer Move Previous" })
