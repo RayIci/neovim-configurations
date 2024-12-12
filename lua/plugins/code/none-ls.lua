@@ -1,9 +1,9 @@
 local ensure_installed = {
-    "prettier",  -- ts/js formatter
-    "stylua",    -- lua formatter
-    "eslint_d",  -- ts/js linter
-    "shfmt",     -- Shell formatter
-    "black",     -- Python formatter
+    "prettier", -- ts/js formatter
+    "stylua", -- lua formatter
+    "eslint_d", -- ts/js linter
+    "shfmt", -- Shell formatter
+    "black", -- Python formatter
     "csharpier", -- C# formatter
     "rustywind", -- tailwind classes organizer
 }
@@ -27,13 +27,13 @@ return {
     "nvimtools/none-ls.nvim",
     dependencies = {
         "nvimtools/none-ls-extras.nvim",
-        "jayp0521/mason-null-ls.nvim", -- ensure dependencies are installed
+        "jayp0521/mason-null-ls.nvim",
     },
     config = function()
         vim.diagnostic.config({
-            virtual_text = false,    -- Disable virtual text (error shown in the editor)
-            signs = true,            -- Show error, warning, etc... signs
-            underline = true,        -- Show the line under an error, warning, etc ...
+            virtual_text = false, -- Disable virtual text (error shown in the editor)
+            signs = true, -- Show error, warning, etc... signs
+            underline = true, -- Show the line under an error, warning, etc ...
             update_in_insert = true, -- Update the errors, warnings also on insert
             float = {
                 source = "always",
@@ -47,7 +47,7 @@ return {
         vim.cmd.highlight("DiagnosticUnderlineHint guisp=#00FF00 gui=undercurl")
 
         local null_ls = require("null-ls")
-        local formatting = null_ls.builtins.formatting   -- to setup formatters
+        local formatting = null_ls.builtins.formatting -- to setup formatters
         local diagnostics = null_ls.builtins.diagnostics -- to setup linters
 
         -- Formatters & linters for mason to install
