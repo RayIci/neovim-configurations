@@ -65,7 +65,7 @@ map("n", "<leader>to", ":tabnew<CR>", { desc = "[T]ab [O]pen New" }) -- open new
 map("n", "<leader>xt", ":tabclose<CR>", { desc = "[T]ab Close" }) -- close current tab
 map("n", "<leader>tn", ":tabn<CR>", { desc = "[T]ab [N]ext" }) --  go to next tab
 map("n", "<leader>tp", ":tabp<CR>", { desc = "[T]ab [P]revious" }) --  go to previous tab
-map("n", "<leader>tss", ":tab split<CR>", { desc = "[T]ab [S]plit" }) -- split tab
+map("n", "<leader>ts", ":tab split<CR>", { desc = "[T]ab [S]plit" }) -- split tab
 
 -- Toggle line wrapping
 map("n", "<leader>tlw", "<cmd>set wrap!<CR>", { desc = "[T]oggle [L]ine [W]rap" })
