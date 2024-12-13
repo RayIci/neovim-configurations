@@ -1,3 +1,12 @@
+local map = require("utils").mapkey
+
+local keymaps = function(builtin)
+    map("n", "<leader><leader>", builtin.find_files, { desc = "Telescope Find Files" })
+    map("n", "<leader>fg", builtin.live_grep, { desc = "Telescope [F]ile [G]rep" })
+    map("n", "<leader>fb", builtin.buffers, { desc = "Telescope [F]ile [B]uffers" })
+    map("n", "<leader>fh", builtin.help_tags, { desc = "Telescope [F]ile [H]elp Tags" })
+end
+
 return {
     "nvim-telescope/telescope.nvim",
     tag = "0.1.8",
@@ -9,37 +18,37 @@ return {
     end,
     config = function()
         local builtin = require("telescope.builtin")
-        vim.keymap.set("n", "<leader><leader>", builtin.find_files, { desc = "Telescope Find Files" })
-        vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Telescope [F]ile [G]rep" })
-        vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Telescope [F]ile [B]uffers" })
-        vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Telescope [F]ile [H]elp Tags" })
+        local actions = require("telescope.actions")
+
+        -- Trouble plugin integration
+        local open_with_trouble = require("trouble.sources.telescope").open
+        local add_to_trouble = require("trouble.sources.telescope").add -- Use this to add more results without clearing the trouble list
+
+        keymaps(builtin)
 
         require("telescope").setup({
             defaults = {
-                -- Default configuration for telescope goes here:
-                -- config_key = value,
                 mappings = {
                     i = {
-                        -- map actions.which_key to <C-h> (default: <C-/>)
-                        -- actions.which_key shows the mappings for your picker,
-                        -- e.g. git_{create, delete, ...}_branch for the git_branches picker
                         ["<C-g>"] = "which_key",
                         ["<C-k>"] = require("telescope.actions").move_selection_previous,
                         ["<C-j>"] = require("telescope.actions").move_selection_next,
                         ["<C-l>"] = require("telescope.actions").select_default,
                         ["<C-v>"] = require("telescope.actions").select_vertical,
                         ["<C-h>"] = require("telescope.actions").select_horizontal,
+                        ["<C-t>"] = open_with_trouble,
                     },
+                    n = { ["<C-t>"] = open_with_trouble },
                 },
             },
             pickers = {
                 find_files = {
-                    file_ignore_patterns = { "node_modules", ".git", ".venv", "__pycanche__" },
+                    file_ignore_patterns = { "node_modules", ".git", ".venv", "__pycache__", "*cahce*" },
                     hidden = true,
                 },
             },
             live_grep = {
-                file_ingore_patterns = { "node_modules", ".git", ".venv", "__pycanche__" },
+                file_ingore_patterns = { "node_modules", ".git", ".venv", "__pycache__", "*cahce*" },
                 additional_args = function(_)
                     return { "--hidden" }
                 end,
