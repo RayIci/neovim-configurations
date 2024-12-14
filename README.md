@@ -1,23 +1,22 @@
 # NeoVim Configurations
 
-In this repository you will find my custom neovim configurations and plugins.
+In this repository you can find my custom neovim configurations and plugins.
+Feal free to use them as you want and give feedback and suggestions.
 
 ## Useful links
 
-Useful starting guide on neovim setup [HERE](https://www.youtube.com/watch?v=zHTeCSVAFNY&t=120s).
+In this section you can find useful youtube videos or link with awesome configurations and examples:
 
-A more sophisticated guide can be found [HERE](https://www.youtube.com/watch?v=KYDG3AHgYEs).
-You can also see the [GITHUB LINK](https://github.com/hendrikmi/neovim-kickstart-config/tree/main).
-
-Kickstart github link [HERE](https://github.com/nvim-lua/kickstart.nvim/blob/master/init.lua).
-
-Another youtube video [HERE](https://www.youtube.com/watch?v=G7-qUMKSH_Y).
-
-Another youtube video [HERE](https://www.youtube.com/watch?v=6pAG3BHurdM).
+- Youtube video: [From 0 to IDE in NEOVIM from scratch](https://www.youtube.com/watch?v=zHTeCSVAFNY&t=120s).
+- Youtube video: [Full Neovim Setup from Scratch in 2024](https://www.youtube.com/watch?v=KYDG3AHgYEs). Related GitHub link: [neovim-kickstart-config](https://github.com/hendrikmi/neovim-kickstart-config/tree/main).
+- Youtube video: [Neovim Setup for Web Dev (JavaScript, Next.js)](https://www.youtube.com/watch?v=G7-qUMKSH_Y).
+- Youtube video: [How I Setup Neovim To Make It AMAZING in 2024: The Ultimate Guide](https://www.youtube.com/watch?v=6pAG3BHurdM).
+- Github guide: [Kickstart Configurations](https://github.com/nvim-lua/kickstart.nvim/blob/master/init.lua).
 
 ## Setting things up
 
-This is done for ubuntu but can be done for every distro of your choice, just use the right package manager.
+Below you can find a list of things that are needed in order to correctly run neovim with it's plugins.
+The installation process listed below is done for ubuntu, but it can be done for every distro of your choice, just use the right package manager or installation process.
 
 Update
 
@@ -33,6 +32,7 @@ sudo apt install libfuse2
 ```
 
 Install `fd` see [github page](https://github.com/sharkdp/fd):
+
 ```bash
 sudo apt install fd-find
 ```
@@ -55,6 +55,12 @@ Install `nodejs` and `npm`:
 sudo apt install nodejs npm
 ```
 
+Install `yarn` see [github page](https://classic.yarnpkg.com/en/docs/install#windows-stable):
+
+```bash
+npm install --global yarn
+```
+
 Install `tree-sitter-cli` and `neovim` packages with `npm`:
 
 ```bash
@@ -62,7 +68,7 @@ sudo npm -g install tree-sitter-cli
 sudo npm -g neovim
 ```
 
-Install python:
+Install `python`:
 
 ```bash
 sudo apt install python3 python3-pip python3-venv
