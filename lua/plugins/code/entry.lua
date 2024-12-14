@@ -7,6 +7,7 @@ return {
     require("plugins.code.debugger"),
     require("plugins.code.unit-test"),
     require("plugins.code.treesitter"),
+    require("plugins.code.extra.markdown"),
     -- require("plugins.code.lsp-signature"),
 
     -- Extra code plugins
