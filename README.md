@@ -1,7 +1,7 @@
 # NeoVim Configurations
 
 In this repository you can find my custom neovim configurations and plugins.
-Feal free to use them as you want and give feedback and suggestions.
+Feel free to use them as you want and give feedback and suggestions.
 
 ## Useful links
 
