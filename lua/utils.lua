@@ -1,10 +1,15 @@
 local utils = {}
 
 -- GENERAL UTILS
+utils.dopts = {
+    noremap = true,
+    silent = true,
+}
+
 function utils.mapkey(mode, key, functionalty, opts)
     opts = opts or {}
     mode = mode or "n"
-    vim.keymap.set(mode, key, functionalty, vim.tbl_deep_extend("force", { noremap = true, silent = true }, opts))
+    vim.keymap.set(mode, key, functionalty, vim.tbl_deep_extend("force", utils.dopts, opts))
 end
 
 -- DIAGNOSTIC UTILS
