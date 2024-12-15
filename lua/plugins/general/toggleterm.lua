@@ -11,15 +11,15 @@ return {
                     return vim.o.columns * 0.4
                 end
             end,
-            open_mapping = [[<C-\>]],
-            direction = "horizontal",
-            close_on_exit = true,
-            shell = vim.o.shell,
-            shading_factor = 2,
+            open_mapping = [[<c-\>]],
+            shade_filetypes = {},
             shade_terminals = true,
+            shading_factor = 1,
             start_in_insert = true,
-            insert_mappings = true,
             persist_size = true,
+            direction = "horizontal",
+            insert_mappings = true,
+            shell = vim.o.shell,
         })
 
         function _G.set_terminal_keymaps()
@@ -32,12 +32,11 @@ return {
             map("t", "<C-w>", [[<C-\><C-n><C-w>]], opts)
         end
 
-        -- if you only want these mappings for toggle term use term://*toggleterm#* instead
+        -- -- if you only want these mappings for toggle term use term://*toggleterm#* instead
         vim.cmd("autocmd! TermOpen term://* lua set_terminal_keymaps()")
 
-        local Terminal = require("toggleterm.terminal").Terminal
-
         -- Keymaps for toggling terminals
+        local Terminal = require("toggleterm.terminal").Terminal
         map("n", "<leader>tv", function()
             local vterm = Terminal:new({ direction = "vertical" })
             vterm:toggle()
