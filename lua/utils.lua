@@ -2,6 +2,8 @@ local utils = {}
 
 -- GENERAL UTILS
 function utils.mapkey(mode, key, functionalty, opts)
+    opts = opts or {}
+    mode = mode or "n"
     vim.keymap.set(mode, key, functionalty, vim.tbl_deep_extend("force", { noremap = true, silent = true }, opts))
 end
 
