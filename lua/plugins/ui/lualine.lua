@@ -39,12 +39,20 @@ return {
                                 local name = vim.fn.bufname(buf)
                                 table.insert(tab_names, name)
                             end
-                            return "Tab " ..
-                            current_tab .. ": " .. table.concat(tab_names, ", ")                  -- Mostra il nome delle tab
+                            return "Tab " .. current_tab .. ": " .. table.concat(tab_names, ", ")
                         end,
                     },
                 },
-                lualine_x = { "encoding", "fileformat", "filetype" },
+                lualine_x = {
+                    {
+                        require("noice").api.statusline.mode.get,
+                        cond = require("noice").api.statusline.mode.has,
+                        color = { fg = "#ff9e64" },
+                    },
+                    "encoding",
+                    "fileformat",
+                    "filetype",
+                },
                 lualine_y = { "progress" },
                 lualine_z = { "location" },
             },
