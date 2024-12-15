@@ -1,7 +1,39 @@
 -- For debug adapter installation see:
 -- https://github.com/mfussenegger/nvim-dap/wiki/Debug-Adapter-installation
 
-local map = require("utils").mapkey
+local keymaps = function()
+    local map = require("utils").mapkey
+
+    require("which-key").add({
+        { "<leader>db",  group = "Debugger" },
+        { "<leader>dbb", "<cmd>lua require('dap').toggle_breakpoint()<cr>", desc = "Toggle Breakpoint" },
+        {
+            "<leader>dbc",
+            function()
+                require("dap.ext.vscode").json_decode = vim.fn.json_decode
+                require("dap.ext.vscode").load_launchjs(".vscode/launch.json", nil)
+                require("dap").continue()
+            end,
+            desc = "Continue",
+        },
+        { "<leader>dbr",  "<cmd>lua require('dap').run()<cr>",                    desc = "Run" },
+        { "<leader>dbp",  "<cmd>lua require('dap').pause()<cr>",                  desc = "Pause" },
+        { "<leader>dbk",  "<cmd>lua require('dap').terminate()<cr>",              desc = "Kill" },
+
+        { "<leader>dbs",  "<cmd>lua require('dap').step_over()<cr>",              desc = "Step Over" },
+        { "<leader>dbi",  "<cmd>lua require('dap').step_into()<cr>",              desc = "Step Into" },
+        { "<leader>dbo",  "<cmd>lua require('dap').step_out()<cr>",               desc = "Step Out" },
+
+        { "<leader>dbu",  group = "Debugger Ui" },
+        { "<leader>dbut", "<cmd>lua require('dapui').toggle()<cr>",               desc = "Toggle Ui" },
+        { "<leader>dbur", "<cmd>lua require('dapui').open({ reset = true })<cr>", desc = "Reset Ui" },
+    })
+
+    map("n", "1", require("dap").step_into, { desc = "Debugger: step into" })
+    map("n", "2", require("dap").step_over, { desc = "Debugger: step over" })
+    map("n", "3", require("dap").step_out, { desc = "Debugger: step out" })
+    map("n", "5", require("dap").continue, { desc = "Debugger: [C]ontinue" })
+end
 
 return {
     "mfussenegger/nvim-dap",
@@ -21,22 +53,6 @@ return {
         -- active the python command is available and it uses the one
         -- provided by the virtual environment
         require("dap-python").setup(vim.loop.os_uname().sysname == "Windows_NT" and "python" or "python3")
-
-        -- Debug Keymaps
-        map("n", "1", dap.step_into, { desc = "Debubber: step into" })
-        map("n", "2", dap.step_over, { desc = "Debugger: step over" })
-        map("n", "3", dap.step_out, { desc = "Debugger: step out" })
-        map("n", "5", dap.continue, { desc = "[D]ebugger: [C]ontinue" })
-        map("n", "<Leader>dt", ":lua require('dapui').toggle()<CR>", { desc = "[D]ebugger: [T]oggle" })
-        map("n", "<Leader>db", dap.toggle_breakpoint, { desc = "[D]ebugger: Toggle [B]reakpoint" })
-        map("n", "<Leader>dr", function()
-            require("dapui").open({ reset = true })
-        end, { desc = "[D]ebugger: [R]eset UI" })
-        map("n", "<Leader>dc", function()
-            require("dap.ext.vscode").json_decode = vim.fn.json_decode
-            require("dap.ext.vscode").load_launchjs(".vscode/launch.json", nil)
-            dap.continue()
-        end, { desc = "[D]ebugger: [C]ontinue" })
 
         -- Dap ui configurations
         local dapui = require("dapui")
@@ -61,6 +77,8 @@ return {
 
         -- Dap breakpoint symbol on editor ➡  ⚫  ⚪  ⭕ 🔴   More: https://apps.timwhitlock.info/emoji/tables/unicode
         -- vim.fn.sign_define("DapBreakpoint", { text = "🔴", texthl = "", linehl = "", numhl = "" })
+
+        keymaps()
     end,
 }
 
