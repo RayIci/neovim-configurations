@@ -1,7 +1,12 @@
-local map = require("utils").mapkey
-
 local keymaps = function()
-    map("n", "-mp", "<cmd>MarkdownPreviewToggle<cr>", { desc = "[M]arkdown [P]review Toggle" })
+    require("which-key").add({
+        { "-m",   group = "Markdown" },
+        { "-mp",  group = "Markdown Preview" },
+        { "-mpt", "<cmd>MarkdownPreviewToggle<cr>", desc = "Toggle" },
+        { "-mpo", "<cmd>MarkdownPreview<cr>",       desc = "Open" },
+        { "-mps", "<cmd>MarkdownPreviewStop<cr>",   desc = "Stop" },
+        { "-mpc", "<cmd>MarkdownPreviewClose<cr>",  desc = "Close" },
+    })
 end
 
 return {

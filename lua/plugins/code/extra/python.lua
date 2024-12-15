@@ -1,4 +1,11 @@
-local map = require("utils").mapkey
+local keymaps = function()
+    require("which-key").add({
+        { "-p",   group = "Python" },
+        { "-pv",  group = "Virtual Environment" },
+        { "-pvc", "<cmd>VenvSelectCached<cr>",  desc = "Cached" },
+        { "-pvs", "<cmd>VenvSelect<cr>",        desc = "Select" },
+    })
+end
 
 return {
     {
@@ -16,8 +23,7 @@ return {
                 search = true,
             })
 
-            map("n", "-pvs", "<cmd>VenvSelect<cr>", { desc = "Python: [V]env [S]elect" })
-            map("n", "-pvc", "<cmd>VenvSelectCached<cr>", { desc = "Python: [V]env Select [C]ached" })
+            keymaps()
         end,
         branch = "regexp",
         event = "VeryLazy",
