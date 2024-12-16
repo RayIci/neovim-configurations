@@ -4,7 +4,7 @@
 local map = require("utils").mapkey
 
 local keymaps = function()
-    map("i", "<C-g>", function()
+    map("i", "<C-a>", function()
         return vim.fn["codeium#Accept"]()
     end, { expr = true })
     map("i", "<c-;>", function()
