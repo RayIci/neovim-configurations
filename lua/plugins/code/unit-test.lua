@@ -9,7 +9,7 @@ local test_adapters = function()
 end
 
 local keybind = function()
-    require("wich-key").add({
+    require("which-key").add({
         { "<leader>tt",  group = "Test" },
         { "<leader>ttr", "<cmd>lua require('neotest').run.run()<cr>",                   desc = "Run" },
         { "<leader>ttf", "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>", desc = "Run File" },
