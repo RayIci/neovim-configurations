@@ -6,7 +6,9 @@ return {
     build = ":call doge#install()", -- Installa i template dei linguaggi TODO: See if it's ok otherwise need to :call doge#install() from cmdline
     config = function()
         -- Generate comment for current line
-        map("n", "<Leader>ddg", "<Plug>(doge-generate)", { desc = "[D]ocstring [D]oge Generate]" })
+        require("which-key").add({
+            { "<leader>dg", "<Plug>(doge-generate)", desc = "Docstring Generate" },
+        })
 
         vim.g.doge_enable_mappings = 1
         vim.g.doge_comment_type = "auto"
