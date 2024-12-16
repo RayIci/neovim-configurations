@@ -9,36 +9,23 @@ local test_adapters = function()
 end
 
 local keybind = function()
-    map("n", "<leader>tr", "<cmd>lua require('neotest').run.run()<cr>", { desc = "[T]est: [R]un Nearest" })
-    map(
-        "n",
-        "<leader>tf",
-        "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>",
-        { desc = "[T]est: Run [F]ile" }
-    )
-    map(
-        "n",
-        "<leader>td",
-        "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>",
-        { desc = "[T]est: [D]ebug Nearest" }
-    )
-    map("n", "<leader>tS", "<cmd>require('neotest').run.stop()<cr>", { desc = "[T]est: Stop" })
-    map("n", "<leader>ta", "<cmd>lua require('neotest').run.attach()<cr>", { desc = "[T]est: [A]ttach" })
-    map(
-        "n",
-        "<leader>tw",
-        "<cmd>lua require('neotest').watch.toggle(vim.fn.expand('%'))<cr>",
-        { desc = "[T]est: [W]atch File Toggle" }
-    )
-    map("n", "<leader>to", "<cmd>lua require('neotest').output.open()<cr>", { desc = "[T]est: [O]utput Open" })
-    map(
-        "n",
-        "<leader>tO",
-        "<cmd>lua require('neotest').output_panel.toggle()<cr>",
-        { desc = "[T]est: [O]utput Panel Toggle" }
-    )
-
-    map("n", "<leader>tss", "<cmd>lua require('neotest').summary.toggle()<cr>", { desc = "[T]est: [S]ummary" })
+    require("wich-key").add({
+        { "<leader>tt",  group = "Test" },
+        { "<leader>ttr", "<cmd>lua require('neotest').run.run()<cr>",                   desc = "Run" },
+        { "<leader>ttf", "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>", desc = "Run File" },
+        { "<leader>ttd", "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>", desc = "Debug Nearest" },
+        { "<leader>ttS", "<cmd>lua require('neotest').run.stop()<cr>",                  desc = "Stop" },
+        { "<leader>tta", "<cmd>lua require('neotest').run.attach()<cr>",                desc = "Attach" },
+        {
+            "<leader>ttw",
+            "<cmd>lua require('neotest').watch.toggle(vim.fn.expand('%'))<cr>",
+            desc = "Watch File Toggle",
+        },
+        { "<leader>tto", "<cmd>lua require('neotest').output.open()<cr>",         desc = "Output Open" },
+        { "<leader>ttc", "<cmd>lua require('neotest').output.close()<cr>",        desc = "Output Close" },
+        { "<leader>ttO", "<cmd>lua require('neotest').output_panel.toggle()<cr>", desc = "Output Panel Toggle" },
+        { "<leader>tts", "<cmd>lua require('neotest').summary.toggle()<cr>",      desc = "Summary Toggle" },
+    })
 end
 
 return {
