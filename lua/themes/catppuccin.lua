@@ -5,7 +5,7 @@ return {
     lazy = false,
     config = function()
         -- Keymap that for transparency toggle
-        vim.keymap.set("n", "<leader>tv", function()
+        vim.keymap.set("n", "<leader>tp", function()
             local cat = require("catppuccin")
             cat.options.transparent_background = not cat.options.transparent_background
             cat.compile()
