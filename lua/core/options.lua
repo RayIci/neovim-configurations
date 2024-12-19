@@ -32,6 +32,11 @@ vim.o.autoindent = true
 vim.o.ignorecase = true -- case-insensitive searching (UNLESS \C or capital in search)
 vim.o.smartcase = true
 
+-- Folding
+vim.opt.foldmethod = "indent"
+vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
+vim.opt.foldenable = false
+
 -- Other settings
 vim.o.scrolloff = 4                                   -- Minimal number of screen lines to keep above and below the cursor (default: 0)
 vim.o.sidescrolloff = 8                               -- Minimal number of screen columns either side of cursor if wrap is `false` (default: 0)

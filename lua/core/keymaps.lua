@@ -1,10 +1,6 @@
 local utils = require("utils")
 local map = utils.mapkey
 
--- Leader set
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
-
 -- Disable the spacebar key's default behavior in Normal and Visual modes
 map({ "n", "v" }, "<Space>", "<Nop>", { silent = true })
 
@@ -44,15 +40,15 @@ map("n", "<C-Left>", ":BufferLineMovePrev<CR>", { desc = "Buffer Move Previous" 
 map("n", "<C-Right>", ":BufferLineMoveNext<CR>", { desc = "Buffer Move Next" })
 map("n", "<Tab>", ":bnext<CR>", { desc = "Buffer Next" })
 map("n", "<S-Tab>", ":bprevious<CR>", { desc = "Buffer Previous" })
-map("n", "<leader>xw", ":Bdelete<CR>", { desc = "Buffer Delete [W]indow" }) -- close buffer
+map("n", "<leader>xw", ":Bdelete<CR>", { desc = "Buffer Delete [W]indow" })     -- close buffer
 map("n", "<leader>xa", ":bufdo :Bdelete<CR>", { desc = "Buffer Delete [A]ll" }) -- close buffer
-map("n", "<leader>b", "<cmd> enew <CR>", { desc = "Buffer New" }) -- new buffer
+map("n", "<leader>b", "<cmd> enew <CR>", { desc = "Buffer New" })               -- new buffer
 
 -- Window management
-map("n", "<leader>v", "<C-w>v", { desc = "Split Window [V]ertically" }) -- split window vertically
+map("n", "<leader>v", "<C-w>v", { desc = "Split Window [V]ertically" })  -- split window vertically
 map("n", "<leader>h", "<C-w>s", { desc = "Split Window [H]rizontally" }) -- split window horizontally
 map("n", "<leader>se", "<C-w>=", { desc = "Make [S]plit [E]qual Size" }) -- make split windows equal width & height
-map("n", "<leader>xs", ":close<CR>", { desc = "Split Close" }) -- close current split window
+map("n", "<leader>xs", ":close<CR>", { desc = "Split Close" })           -- close current split window
 
 -- Navigate between splits
 map("n", "<C-k>", ":wincmd k<CR>", { desc = "Split Navigate Up" })
@@ -62,9 +58,9 @@ map("n", "<C-l>", ":wincmd l<CR>", { desc = "Split Navigate Right" })
 
 -- Tabs
 map("n", "<leader>to", ":tabnew<CR>", { desc = "[T]ab [O]pen New" }) -- open new tab
-map("n", "<leader>xt", ":tabclose<CR>", { desc = "[T]ab Close" }) -- close current tab
-map("n", "<leader>tn", ":tabn<CR>", { desc = "[T]ab [N]ext" }) --  go to next tab
-map("n", "<leader>tp", ":tabp<CR>", { desc = "[T]ab [P]revious" }) --  go to previous tab
+map("n", "<leader>xt", ":tabclose<CR>", { desc = "[T]ab Close" })    -- close current tab
+map("n", "<leader>tn", ":tabn<CR>", { desc = "[T]ab [N]ext" })       --  go to next tab
+map("n", "<leader>tp", ":tabp<CR>", { desc = "[T]ab [P]revious" })   --  go to previous tab
 map("n", "<leader>ts", ":tab split<CR>", { desc = "[T]ab [S]plit" }) -- split tab
 
 -- Toggle line wrapping
@@ -130,3 +126,26 @@ map(
 )
 map("n", "<leader>dw", vim.diagnostic.open_float, { desc = "Open floating [D]iagnostic [M]essage" })
 map("n", "<leader>dl", utils.toggle_diagnostic_list, { desc = "Open [D]iagnostics [L]ist" })
+
+-- Folding
+require("which-key").add({
+    { "<leader>ze",  "<cmd>set foldenable!<cr>",       desc = "Toggle Folding" },
+    { "<leader>zo",  "zo",                             desc = "Folding Open" },
+    { "<leader>zO",  "zc",                             desc = "Folding Close" },
+    { "<leader>za",  group = "Folding all" },
+    { "<leader>zac", "zM",                             desc = "Folding Close All" },
+    { "<leader>zao", "zR",                             desc = "Folding Open All" },
+    { "<leader>zx",  "zd",                             desc = "Folding Delete" },
+    { "<leader>zn",  "zj",                             desc = "Folding Next" },
+    { "<leader>zp",  "zk",                             desc = "Folding Previous" },
+    { "<leader>zm",  group = "Folding Method" },
+    { "<leader>zme", "<cmd>set foldmethod=expr<cr>",   desc = "Expression" },
+    { "<leader>zmi", "<cmd>set foldmethod=indent<cr>", desc = "Indent" },
+    { "<leader>zmm", "<cmd>set foldmethod=manual<cr>", desc = "Manual" },
+    { "<leader>zms", "<cmd>set foldmethod=syntax<cr>", desc = "Syntax" },
+    { "<leader>zmM", "<cmd>set foldmethod=marker<cr>", desc = "Marker" },
+    { "<leader>zl",  group = "Folding Level" },
+    { "<leader>zlm", "<cmd>set foldlevel=0<cr>",       desc = "Level 0 (Min)" },
+    { "<leader>zl1", "<cmd>set foldlevel=1<cr>",       desc = "Level 1" },
+    { "<leader>zlM", "<cmd>set foldlevel=99<cr>",      desc = "Level 99 (Max)" },
+})
