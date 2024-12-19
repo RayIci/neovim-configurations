@@ -58,14 +58,14 @@ sudo apt install nodejs npm
 Install `yarn` see [github page](https://classic.yarnpkg.com/en/docs/install#windows-stable):
 
 ```bash
-npm install --global yarn
+sudo npm install --global yarn
 ```
 
 Install `tree-sitter-cli` and `neovim` packages with `npm`:
 
 ```bash
 sudo npm -g install tree-sitter-cli
-sudo npm -g neovim
+sudo npm -g install neovim
 ```
 
 Install `python`:
