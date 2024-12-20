@@ -31,6 +31,12 @@ Install libfuse2:
 sudo apt install libfuse2
 ```
 
+Install `xclip`:
+
+```bash
+sudo apt install xclip
+```
+
 Install `fd` see [github page](https://github.com/sharkdp/fd):
 
 ```bash
