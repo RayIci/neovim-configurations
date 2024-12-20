@@ -11,7 +11,7 @@ return {
                     return vim.o.columns * 0.4
                 end
             end,
-            open_mapping = [[<c-\>]],
+            open_mapping = [[<c-x>]],
             shade_filetypes = {},
             shade_terminals = true,
             shading_factor = 1,
@@ -22,7 +22,7 @@ return {
             shell = vim.o.shell,
         })
 
-        map("n", "<c-\\>", [[<Cmd>ToggleTerm<CR>]], { desc = "Toggle Terminal", silent = true, noremap = true })
+        map("n", "<c-x>", [[<Cmd>ToggleTerm<CR>]], { desc = "Toggle Terminal", silent = true, noremap = true })
 
         function _G.set_terminal_keymaps()
             local opts = { buffer = 0 }
