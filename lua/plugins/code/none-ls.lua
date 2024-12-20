@@ -4,6 +4,7 @@ local ensure_installed = {
     "eslint_d",  -- ts/js linter
     "shfmt",     -- Shell formatter
     "black",     -- Python formatter
+    "isort",     -- Python import sorter
     "csharpier", -- C# formatter
     "rustywind", -- tailwind classes organizer
     "hadolint",  -- Dockerfile linter
@@ -17,6 +18,7 @@ local formatting_and_diagnostics_config = function(formatting, diagnostics)
         formatting.csharpier,
         formatting.rustywind,
         formatting.black,
+        formatting.isort,
 
         diagnostics.hadolint,
     }
