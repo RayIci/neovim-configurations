@@ -22,6 +22,8 @@ return {
             shell = vim.o.shell,
         })
 
+        map("n", "<c-\\>", [[<Cmd>ToggleTerm<CR>]], { desc = "Toggle Terminal", silent = true, noremap = true })
+
         function _G.set_terminal_keymaps()
             local opts = { buffer = 0 }
             map("t", "<C-z>", [[<C-\><C-n>]], opts)
