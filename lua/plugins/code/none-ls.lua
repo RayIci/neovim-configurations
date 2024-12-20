@@ -6,13 +6,10 @@ local ensure_installed = {
     "black",     -- Python formatter
     "csharpier", -- C# formatter
     "rustywind", -- tailwind classes organizer
+    "hadolint",  -- Dockerfile linter
 }
 
-local diagnostics_config = function(diagnostics)
-    return {}
-end
-
-local formatting_config = function(formatting)
+local formatting_and_diagnostics_config = function(formatting, diagnostics)
     return {
         formatting.prettier,
         formatting.stylua,
@@ -20,6 +17,8 @@ local formatting_config = function(formatting)
         formatting.csharpier,
         formatting.rustywind,
         formatting.black,
+
+        diagnostics.hadolint,
     }
 end
 
@@ -67,7 +66,7 @@ return {
             automatic_installation = true,
         })
 
-        local sources = vim.tbl_deep_extend("force", diagnostics_config(diagnostics), formatting_config(formatting))
+        local sources = formatting_and_diagnostics_config(formatting, diagnostics)
 
         local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
         null_ls.setup({

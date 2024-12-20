@@ -20,6 +20,7 @@ return {
                 "lua",
                 "latex",
                 "csv",
+                "dockerfile",
             },
             sync_install = false,
             highlight = { enable = true },

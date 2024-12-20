@@ -44,6 +44,10 @@ local servers = {
         },
     },
 
+    -- Docker
+    docker_compose_language_service = {},
+    dockerls = {},
+
     -- lua
     lua_ls = {
         settings = {
