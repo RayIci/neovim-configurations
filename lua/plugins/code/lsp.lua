@@ -17,7 +17,7 @@ local servers = {
                     autoSearchPaths = true,
                     useLibraryCodeForTypes = true,
                     diagnosticMode = "openFilesOnly",
-                    typeCheckingMode = "strict",
+                    typeCheckingMode = "standard",
                 },
             },
         },
