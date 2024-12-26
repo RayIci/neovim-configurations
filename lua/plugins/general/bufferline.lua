@@ -15,7 +15,7 @@ return {
             require("bufferline").setup({
                 options = {
                     mode = "buffers", -- "buffers" | "tabs"  set to "tabs" to only show tabpages instead
-                    themable = true, -- allows highlight groups to be overriden i.e. sets highlights as default
+                    themable = true,  -- allows highlight groups to be overriden i.e. sets highlights as default
                     numbers = "none", -- | "ordinal" | "buffer_id" | "both" | function({ ordinal, id, lower, raise }): string,
                     buffer_close_icon = "✗",
                     close_icon = "✗",
@@ -48,7 +48,7 @@ return {
                         fg = "#434C5E",
                     },
                     buffer_selected = {
-                        bold = false,
+                        bold = true,
                         italic = true,
                     },
                 },
