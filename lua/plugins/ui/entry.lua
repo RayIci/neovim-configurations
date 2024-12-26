@@ -1,5 +1,5 @@
 return {
-    require("themes.catppuccin"),
+    require("themes.github"),
 
     require("plugins.ui.alpha"),
     require("plugins.ui.lualine"),
