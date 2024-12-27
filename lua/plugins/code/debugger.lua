@@ -29,10 +29,10 @@ local keymaps = function()
         { "<leader>dbur", "<cmd>lua require('dapui').open({ reset = true })<cr>", desc = "Reset Ui" },
     })
 
-    map("n", "1", require("dap").step_into, { desc = "Debugger: step into" })
-    map("n", "2", require("dap").step_over, { desc = "Debugger: step over" })
-    map("n", "3", require("dap").step_out, { desc = "Debugger: step out" })
-    map("n", "5", require("dap").continue, { desc = "Debugger: [C]ontinue" })
+    map("n", "<F5>", require("dap").continue, { desc = "Debugger: continue" })
+    map("n", "<F8>", require("dap").step_into, { desc = "Debugger: step into" })
+    map("n", "<F9>", require("dap").step_over, { desc = "Debugger: step over" })
+    map("n", "<F10>", require("dap").step_out, { desc = "Debugger: step out" })
 end
 
 return {
