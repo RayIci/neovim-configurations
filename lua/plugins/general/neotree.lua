@@ -195,6 +195,7 @@ return {
                         ".git",
                         ".python-version",
                         ".venv",
+                        ".pytest_cache",
                     },
                     hide_by_pattern = { -- uses glob style patterns
                         --"*.meta",
