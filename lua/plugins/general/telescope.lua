@@ -22,7 +22,8 @@ return {
 
         -- Trouble plugin integration
         local open_with_trouble = require("trouble.sources.telescope").open
-        local add_to_trouble = require("trouble.sources.telescope").add -- Use this to add more results without clearing the trouble list
+        local add_to_trouble = require("trouble.sources.telescope")
+        .add                                                            -- Use this to add more results without clearing the trouble list
 
         keymaps(builtin)
 
@@ -43,12 +44,12 @@ return {
             },
             pickers = {
                 find_files = {
-                    file_ignore_patterns = { "node_modules", ".git", ".venv", "__pycache__", "*cahce*" },
+                    file_ignore_patterns = { "node_modules", "^.git", ".venv", "__pycache__", "*cahce*" },
                     hidden = true,
                 },
             },
             live_grep = {
-                file_ingore_patterns = { "node_modules", ".git", ".venv", "__pycache__", "*cahce*" },
+                file_ingore_patterns = { "node_modules", "^.git", ".venv", "__pycache__", "*cahce*" },
                 additional_args = function(_)
                     return { "--hidden" }
                 end,
