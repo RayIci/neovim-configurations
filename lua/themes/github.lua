@@ -69,7 +69,7 @@ return {
             groups = {
                 all = {
                     ["@comment"] = { fg = "#6A9955" }, -- Treesitter: Commenti
-                    ["@string"] = { fg = "#6A9955" },
+                    -- ["@string"] = { fg = "#6A9955" },
                     -- ["@string.doc"] = { fg = "#6A9955" }, -- Treesitter: Docstring
                 },
             },
