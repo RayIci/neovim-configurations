@@ -16,23 +16,24 @@ local keymaps = function()
             end,
             desc = "Continue",
         },
-        { "<leader>dbr",  "<cmd>lua require('dap').run()<cr>",                    desc = "Run" },
-        { "<leader>dbp",  "<cmd>lua require('dap').pause()<cr>",                  desc = "Pause" },
-        { "<leader>dbk",  "<cmd>lua require('dap').terminate()<cr>",              desc = "Kill" },
+        { "<leader>dbr",  "<cmd>lua require('dap').run()<cr>",                      desc = "Run" },
+        { "<leader>dbp",  "<cmd>lua require('dap').pause()<cr>",                    desc = "Pause" },
+        { "<leader>dbk",  "<cmd>lua require('dap').terminate()<cr>",                desc = "Kill" },
 
-        { "<leader>dbs",  "<cmd>lua require('dap').step_over()<cr>",              desc = "Step Over" },
-        { "<leader>dbi",  "<cmd>lua require('dap').step_into()<cr>",              desc = "Step Into" },
-        { "<leader>dbo",  "<cmd>lua require('dap').step_out()<cr>",               desc = "Step Out" },
+        { "<leader>dbs",  "<cmd>lua require('dap').step_over()<cr>",                desc = "Step Over" },
+        { "<leader>dbi",  "<cmd>lua require('dap').step_into()<cr>",                desc = "Step Into" },
+        { "<leader>dbo",  "<cmd>lua require('dap').step_out()<cr>",                 desc = "Step Out" },
 
         { "<leader>dbu",  group = "Debugger Ui" },
-        { "<leader>dbut", "<cmd>lua require('dapui').toggle()<cr>",               desc = "Toggle Ui" },
-        { "<leader>dbur", "<cmd>lua require('dapui').open({ reset = true })<cr>", desc = "Reset Ui" },
+        { "<leader>dbut", "<cmd>lua require('dapui').toggle()<cr>",                 desc = "Toggle Ui" },
+        { "<leader>dbur", "<cmd>lua require('dapui').open({ reset = true })<cr>",   desc = "Reset Ui" },
+        { "<leader>dbt",  "<cmd>lua require('nvim-dap-virtual-text').toggle()<cr>", desc = "Toggle Virtual Text" },
     })
 
     map("n", "<F5>", require("dap").continue, { desc = "Debugger: continue" })
-    map("n", "<F8>", require("dap").step_into, { desc = "Debugger: step into" })
-    map("n", "<F9>", require("dap").step_over, { desc = "Debugger: step over" })
-    map("n", "<F10>", require("dap").step_out, { desc = "Debugger: step out" })
+    map("n", "<F1>", require("dap").step_into, { desc = "Debugger: step into" })
+    map("n", "<F2>", require("dap").step_over, { desc = "Debugger: step over" })
+    map("n", "<F3>", require("dap").step_out, { desc = "Debugger: step out" })
 end
 
 return {
