@@ -67,7 +67,7 @@ require("which-key").add({
 })
 
 -- Toggle line wrapping
-map("n", "<leader>tlw", "<cmd>set wrap!<CR>", { desc = "Toggle Line Wrap" })
+map("n", "<leader>tw", "<cmd>set wrap!<CR>", { desc = "Toggle Line Wrap" })
 
 -- Stay in indent mode
 map("v", "<", "<gv", { desc = "Indent Left" })
@@ -129,26 +129,3 @@ map(
 )
 map("n", "<leader>dw", vim.diagnostic.open_float, { desc = "Open floating Diagnostic Message" })
 map("n", "<leader>dl", utils.toggle_diagnostic_list, { desc = "Open Diagnostics List" })
-
--- Folding
-require("which-key").add({
-    { "<leader>ze",  "<cmd>set foldenable!<cr>",       desc = "Toggle Folding" },
-    { "<leader>zo",  "zo",                             desc = "Folding Open" },
-    { "<leader>zO",  "zc",                             desc = "Folding Close" },
-    { "<leader>za",  group = "Folding all" },
-    { "<leader>zac", "zM",                             desc = "Folding Close All" },
-    { "<leader>zao", "zR",                             desc = "Folding Open All" },
-    { "<leader>zx",  "zd",                             desc = "Folding Delete" },
-    { "<leader>zn",  "zj",                             desc = "Folding Next" },
-    { "<leader>zp",  "zk",                             desc = "Folding Previous" },
-    { "<leader>zm",  group = "Folding Method" },
-    { "<leader>zme", "<cmd>set foldmethod=expr<cr>",   desc = "Expression" },
-    { "<leader>zmi", "<cmd>set foldmethod=indent<cr>", desc = "Indent" },
-    { "<leader>zmm", "<cmd>set foldmethod=manual<cr>", desc = "Manual" },
-    { "<leader>zms", "<cmd>set foldmethod=syntax<cr>", desc = "Syntax" },
-    { "<leader>zmM", "<cmd>set foldmethod=marker<cr>", desc = "Marker" },
-    { "<leader>zl",  group = "Folding Level" },
-    { "<leader>zlm", "<cmd>set foldlevel=0<cr>",       desc = "Level 0 (Min)" },
-    { "<leader>zl1", "<cmd>set foldlevel=1<cr>",       desc = "Level 1" },
-    { "<leader>zlM", "<cmd>set foldlevel=99<cr>",      desc = "Level 99 (Max)" },
-})

@@ -33,9 +33,10 @@ vim.o.ignorecase = true -- case-insensitive searching (UNLESS \C or capital in s
 vim.o.smartcase = true
 
 -- Folding
-vim.opt.foldmethod = "indent"
+-- Now handled by ufo plugin
+--[[ vim.opt.foldmethod = "indent" -- "expr", "manual", "marker", "indent", "syntax"
 vim.opt.foldexpr = "nvim_treesitter#foldexpr()"
-vim.opt.foldenable = false
+vim.opt.foldenable = false ]]
 
 -- Other settings
 vim.o.scrolloff = 4                                   -- Minimal number of screen lines to keep above and below the cursor (default: 0)

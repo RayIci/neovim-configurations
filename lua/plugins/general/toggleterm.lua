@@ -42,11 +42,11 @@ return {
         map("n", "<leader>tv", function()
             local vterm = Terminal:new({ direction = "vertical" })
             vterm:toggle()
-        end, { desc = "[T]erminal [V]ertical" })
+        end, { desc = "Terminal Vertical" })
 
         map("n", "<leader>th", function()
             local hterm = Terminal:new({ direction = "horizontal" })
             hterm:toggle()
-        end, { desc = "[T]erminal [H]orizontal" })
+        end, { desc = "Terminal Horizontal" })
     end,
 }
