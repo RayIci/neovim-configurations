@@ -11,6 +11,7 @@ map("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move Line Down" })
 
 -- Formatting
 map("n", "<leader>f", "<cmd>lua vim.lsp.buf.format()<CR>", { desc = "Format Document" })
+map("v", "<leader>f", "<cmd>'<'>lua vim.lsp.buf.format()<CR>", { desc = "Format Selected" })
 
 -- save file
 map("n", "<C-s>", "<cmd> w <CR>", { desc = "Save Document" })
