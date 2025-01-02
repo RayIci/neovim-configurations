@@ -49,6 +49,10 @@ return {
                         cond = require("noice").api.statusline.mode.has,
                         color = { fg = "#ff9e64" },
                     },
+                    function()
+                        local venv = os.getenv("VIRTUAL_ENV")
+                        return venv and "(" .. vim.fn.fnamemodify(venv, ":t") .. ")" or ""
+                    end,
                     "encoding",
                     "fileformat",
                     "filetype",
