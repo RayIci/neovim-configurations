@@ -5,7 +5,7 @@ local keymaps = function()
     local map = require("utils").mapkey
 
     require("which-key").add({
-        { "<leader>db",  group = "Debugger" },
+        { "<leader>db", group = "Debugger" },
         { "<leader>dbb", "<cmd>lua require('dap').toggle_breakpoint()<cr>", desc = "Toggle Breakpoint" },
         {
             "<leader>dbc",
@@ -16,27 +16,27 @@ local keymaps = function()
             end,
             desc = "Continue",
         },
-        { "<leader>dbr",  "<cmd>lua require('dap').run()<cr>",                          desc = "Run" },
-        { "<leader>dbp",  "<cmd>lua require('dap').pause()<cr>",                        desc = "Pause" },
-        { "<leader>dbk",  "<cmd>lua require('dap').terminate()<cr>",                    desc = "Kill" },
+        { "<leader>dbr", "<cmd>lua require('dap').run()<cr>", desc = "Run" },
+        { "<leader>dbp", "<cmd>lua require('dap').pause()<cr>", desc = "Pause" },
+        { "<leader>dbk", "<cmd>lua require('dap').terminate()<cr>", desc = "Kill" },
 
-        { "<leader>dbs",  "<cmd>lua require('dap').step_over()<cr>",                    desc = "Step Over" },
-        { "<leader>dbi",  "<cmd>lua require('dap').step_into()<cr>",                    desc = "Step Into" },
-        { "<leader>dbo",  "<cmd>lua require('dap').step_out()<cr>",                     desc = "Step Out" },
+        { "<leader>dbs", "<cmd>lua require('dap').step_over()<cr>", desc = "Step Over" },
+        { "<leader>dbi", "<cmd>lua require('dap').step_into()<cr>", desc = "Step Into" },
+        { "<leader>dbo", "<cmd>lua require('dap').step_out()<cr>", desc = "Step Out" },
 
-        { "<leader>dbt",  "<cmd>lua require('nvim-dap-virtual-text').toggle()<cr>",     desc = "Toggle Virtual Text" },
+        { "<leader>dbt", "<cmd>lua require('nvim-dap-virtual-text').toggle()<cr>", desc = "Toggle Virtual Text" },
 
-        { "<leader>dbu",  group = "Debugger Ui" },
-        { "<leader>dbut", "<cmd>lua require('dapui').toggle()<cr>",                     desc = "Toggle Ui" },
-        { "<leader>dbur", "<cmd>lua require('dapui').open({ reset = true })<cr>",       desc = "Reset Ui" },
+        { "<leader>dbu", group = "Debugger Ui" },
+        { "<leader>dbut", "<cmd>lua require('dapui').toggle()<cr>", desc = "Toggle Ui" },
+        { "<leader>dbur", "<cmd>lua require('dapui').open({ reset = true })<cr>", desc = "Reset Ui" },
 
-        { "<leader>dbus", "<cmd>lua require('dapui').float_element('scopes')<cr>",      desc = "Floating Scopes" },
+        { "<leader>dbus", "<cmd>lua require('dapui').float_element('scopes')<cr>", desc = "Floating Scopes" },
         { "<leader>dbub", "<cmd>lua require('dapui').float_element('breakpoints')<cr>", desc = "Floating Breakpoint" },
-        { "<leader>dbuS", "<cmd>lua require('dapui').float_element('stacks')<cr>",      desc = "Floating Stacks" },
-        { "<leader>dbuw", "<cmd>lua require('dapui').float_element('watches')<cr>",     desc = "Floating Watches" },
-        { "<leader>dbuR", "<cmd>lua require('dapui').float_element('repl')<cr>",        desc = "Floating Repl" },
+        { "<leader>dbuS", "<cmd>lua require('dapui').float_element('stacks')<cr>", desc = "Floating Stacks" },
+        { "<leader>dbuw", "<cmd>lua require('dapui').float_element('watches')<cr>", desc = "Floating Watches" },
+        { "<leader>dbuR", "<cmd>lua require('dapui').float_element('repl')<cr>", desc = "Floating Repl" },
 
-        { "<leader>dbue", "<cmd>lua require('dapui').eval()<cr>",                       desc = "Floating Evaluate" },
+        { "<leader>dbue", "<cmd>lua require('dapui').eval()<cr>", desc = "Floating Evaluate" },
     })
 
     map("n", "<F5>", require("dap").continue, { desc = "Debugger: continue" })
@@ -49,17 +49,17 @@ local dapui_setup = {
     layouts = {
         {
             elements = {
-                { id = "scopes",      size = 0.25 },
+                { id = "scopes", size = 0.25 },
                 { id = "breakpoints", size = 0.25 },
-                { id = "stacks",      size = 0.25 },
-                { id = "watches",     size = 0.25 },
+                { id = "stacks", size = 0.25 },
+                { id = "watches", size = 0.25 },
             },
-            size = 60,
-            position = "right",
+            size = 40,
+            position = "left",
         },
         {
             elements = {
-                { id = "repl",    size = 0.5 },
+                { id = "repl", size = 0.5 },
                 { id = "console", size = 0.5 },
             },
             size = 15,
