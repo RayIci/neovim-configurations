@@ -72,7 +72,7 @@ return {
         event = "VeryLazy",
         config = true,
     },
-    {
+    --[[ {
         -- Better file symbol symbols
         "simrat39/symbols-outline.nvim",
         config = function()
@@ -84,5 +84,5 @@ return {
                 { noremap = true, silent = true, desc = "[S]ymbols [O]utline" }
             )
         end,
-    },
+    }, ]]
 }

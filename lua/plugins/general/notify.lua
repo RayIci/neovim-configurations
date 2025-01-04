@@ -3,7 +3,7 @@ return {
     config = function()
         require("notify").setup({
             stages = "fade_in_slide_out",
-            timeout = 300,
+            timeout = 200,
             top_down = false,
             render = "default",
             -- max_width = 50,
@@ -15,7 +15,7 @@ return {
             "n",
             "<leader>nw",
             ":Telescope notify<CR>",
-            { noremap = true, silent = true, desc = "[N]otify [W]indow" }
+            { noremap = true, silent = true, desc = "Notify Window" }
         )
     end,
 }

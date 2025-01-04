@@ -8,6 +8,7 @@ return {
     require("plugins.general.notify"),
     require("plugins.general.telescope"),
     require("plugins.general.toggleterm"),
+    require("plugins.general.illuminate"),
 
     -- Small but useful plugins
     require("plugins.general.misc"),
