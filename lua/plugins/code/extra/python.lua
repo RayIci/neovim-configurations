@@ -1,15 +1,16 @@
 local keymaps = function()
     require("which-key").add({
-        { "-p",   group = "Python" },
-        { "-pv",  group = "Virtual Environment" },
-        { "-pvc", "<cmd>VenvSelectCached<cr>",  desc = "Cached" },
-        { "-pvs", "<cmd>VenvSelect<cr>",        desc = "Select" },
+        { "-p", group = "Python" },
+        { "-pv", group = "Virtual Environment" },
+        { "-pvc", "<cmd>VenvSelectCached<cr>", desc = "Cached" },
+        { "-pvs", "<cmd>VenvSelect<cr>", desc = "Select" },
     })
 end
 
 return {
     {
         -- Virtual environment selector
+        -- other plugin: "AckslD/swenv.nvim"
         "linux-cultist/venv-selector.nvim",
         dependencies = {
             "neovim/nvim-lspconfig",
