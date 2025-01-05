@@ -13,6 +13,10 @@ In this section you can find useful youtube videos or link with awesome configur
 - Youtube video: [How I Setup Neovim To Make It AMAZING in 2024: The Ultimate Guide](https://www.youtube.com/watch?v=6pAG3BHurdM).
 - Github guide: [Kickstart Configurations](https://github.com/nvim-lua/kickstart.nvim/blob/master/init.lua).
 
+## NerdFont Icons
+
+If you want you can use this icons from [NerdFont](https://www.nerdfonts.com/cheat-sheet).
+
 ## Setting things up
 
 Below you can find a list of things that are needed in order to correctly run neovim with it's plugins.
