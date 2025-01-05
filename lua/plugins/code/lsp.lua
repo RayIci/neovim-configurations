@@ -57,6 +57,12 @@ local servers = {
         },
     },
 
+    -- C & C++
+    clangd = {},
+
+    -- CMake
+    cmake = {},
+
     -- Docker
     docker_compose_language_service = {},
     dockerls = {},

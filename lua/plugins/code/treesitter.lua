@@ -5,10 +5,14 @@ return {
         local treesitter_configs = require("nvim-treesitter.configs")
         treesitter_configs.setup({
             ensure_installed = {
+                "c_sharp",
+                "cpp",
+                "c",
+                "make",
+                "cmake",
                 "javascript",
                 "typescript",
                 "tsx",
-                "c_sharp",
                 "html",
                 "css",
                 "python",

@@ -1,13 +1,16 @@
+-- https://github.com/nvimtools/none-ls.nvim/blob/main/doc/BUILTINS.md
+
 local ensure_installed = {
-    "prettier",  -- ts/js formatter
-    "stylua",    -- lua formatter
-    "eslint_d",  -- ts/js linter
-    "shfmt",     -- Shell formatter
-    "black",     -- Python formatter
-    "isort",     -- Python import sorter
+    "prettier", -- ts/js formatter
+    "stylua", -- lua formatter
+    "eslint_d", -- ts/js linter
+    "shfmt", -- Shell formatter
+    "black", -- Python formatter
+    "isort", -- Python import sorter
     "csharpier", -- C# formatter
+    "clang-format", -- C & C++ formatter
     "rustywind", -- tailwind classes organizer
-    "hadolint",  -- Dockerfile linter
+    "hadolint", -- Dockerfile linter
 }
 
 local formatting_and_diagnostics_config = function(formatting, diagnostics)
@@ -19,6 +22,7 @@ local formatting_and_diagnostics_config = function(formatting, diagnostics)
         formatting.rustywind,
         formatting.black,
         formatting.isort,
+        formatting.clang_format,
 
         diagnostics.hadolint,
     }
@@ -32,9 +36,9 @@ return {
     },
     config = function()
         vim.diagnostic.config({
-            virtual_text = false,    -- Disable virtual text (error shown in the editor)
-            signs = true,            -- Show error, warning, etc... signs
-            underline = true,        -- Show the line under an error, warning, etc ...
+            virtual_text = false, -- Disable virtual text (error shown in the editor)
+            signs = true, -- Show error, warning, etc... signs
+            underline = true, -- Show the line under an error, warning, etc ...
             update_in_insert = true, -- Update the errors, warnings also on insert
             severity_sort = true,
             float = {
@@ -59,7 +63,7 @@ return {
         })
 
         local null_ls = require("null-ls")
-        local formatting = null_ls.builtins.formatting   -- to setup formatters
+        local formatting = null_ls.builtins.formatting -- to setup formatters
         local diagnostics = null_ls.builtins.diagnostics -- to setup linters
 
         -- Formatters & linters for mason to install
