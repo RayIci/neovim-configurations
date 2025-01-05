@@ -9,6 +9,7 @@ return {
     require("plugins.general.telescope"),
     require("plugins.general.toggleterm"),
     require("plugins.general.illuminate"),
+    require("plugins.general.undotree"),
 
     -- Small but useful plugins
     require("plugins.general.misc"),
